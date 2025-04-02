@@ -1,0 +1,43 @@
+.special-recruitment {
+  .special-top {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .title {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .swiper-pagination {
+      position: relative;
+      width: auto;
+      margin: 0;
+      bottom: unset;
+      color: #98A6AD;
+      font-size: 12px;
+    }
+  }
+
+
+  .recruitment-list {
+    .swiper {
+      .swiper-slide {
+        margin-top: 40px !important;
+      }
+    }
+  }
+
+
+  @media(max-width:767px) {
+    .recruitment-list {
+      .swiper {
+        .swiper-slide {
+          margin-top: 12px !important;
+        }
+      }
+    }
+  }
+}

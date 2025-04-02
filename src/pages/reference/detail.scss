@@ -1,0 +1,127 @@
+.reference-announce-detail {
+    .page-content {
+        .content-top {
+            .back-button {
+                padding: 0;
+
+                span {
+                    color: #3A3A3A;
+                    font-size: 18px;
+                    font-weight: 700;
+                    line-height: 24px;
+                }
+
+                img {
+                    margin-right: 10px;
+                }
+            }
+
+            .link-button {
+                color: #6B7280;
+                font-size: 14px;
+                font-weight: 500;
+                padding: 0;
+
+                img {
+                    width: 18px;
+                    margin-right: 6px;
+                }
+            }
+        }
+        .reference-card{
+            display: block;
+            text-decoration: none;
+            pointer-events: none;
+        }
+    }
+
+    .title {
+        color: #3A3A3A;
+        font-size: 28px;
+        font-weight: 700;
+        margin: 24px 0 20px 25px;
+    }
+
+    hr {
+        margin: 16px 0 30px;
+    }
+
+    .content-box {
+
+        .top,
+        .bottom {
+            justify-content: flex-start;
+
+            h5 {
+                color: #3A3A3A;
+                font-size: 15px;
+                font-weight: 500;
+                line-height: 24px;
+                margin-bottom: 12px;
+
+                &:first-child {
+                    width: 60px;
+                }
+
+                &:last-child {
+                    margin-left: 40px;
+                    color: #5A5A5A;
+                    font-size: 14px;
+                    opacity: 0.9;
+                }
+
+                a {
+                    color: #2D9CDB;
+                }
+            }
+        }
+    }
+
+    .big-box {
+        min-height: 530px;
+        border-radius: 20px;
+        background: #FCFCFC;
+    }
+
+    @media(max-width:767px) {
+        .page-body {
+            border-radius: 10px;
+            background: #FFF;
+            box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.1);
+
+            .page-content {
+                box-shadow: unset;
+                padding: 30px 0;
+
+                .content-top {
+                    .back-button {
+                        span {
+                            display: none;
+                        }
+                    }
+
+                    .link-button {
+                        display: none;
+                    }
+                }
+
+                .reference-card {
+                    padding: 10px 0;
+                    margin-top: 10px;
+                    border-radius: unset;
+                    border-left: none;
+                    border-right: none;
+
+                    .card-top,
+                    .card-content {
+                        padding: 0 14px;
+                    }
+                }
+
+                .big-box {
+                    margin: 22px 10px;
+                }
+            }
+        }
+    }
+}

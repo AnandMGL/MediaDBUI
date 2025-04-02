@@ -1,0 +1,79 @@
+.status-card {
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: 1px solid #E7E7E7;
+    background: #FFF;
+
+    span {
+        color: #8C8C8C;
+        font-size: 10px;
+        font-weight: 500;
+    }
+
+    .card-top {
+        h6 {
+            color: #5A5A5A;
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+            margin: 0;
+
+            span {
+                margin-right: 16px;
+
+            }
+        }
+    }
+
+    .card-content {
+        margin-top: 12px;
+        padding-top: 12px;
+        margin-bottom: 10px;
+        border-top: 1px solid #E7E7E7;
+        border-bottom: 1px solid #E7E7E7;
+
+        h5 {
+            color: #5A5A5A;
+            font-size: 14px;
+            font-weight: 700;
+
+            &:last-child {
+                font-weight: 500;
+                margin-bottom: 12px;
+            }
+
+            a {
+                text-decoration: none;
+            }
+        }
+    }
+
+    .card-bottom {
+        margin-bottom: 4px;
+
+        h6 {
+            margin: 0;
+        }
+
+        a {
+            color: #2D9CDB;
+            font-size: 13px;
+            font-weight: 700;
+            width: 132px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            &:last-child {
+                margin-left: 26px;
+            }
+        }
+    }
+
+    .vertical-line {
+        width: 1px;
+        background: #E7E7E7;
+        height: 16px;
+        display: block;
+    }
+}

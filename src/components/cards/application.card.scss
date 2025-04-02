@@ -1,0 +1,56 @@
+.application-card {
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: 1px solid #E7E7E7;
+    background: #FFF;
+
+    span {
+        color: #8C8C8C;
+        font-size: 10px;
+        font-weight: 500;
+    }
+
+    .card-content {
+
+
+        .left-side {
+            padding: 16px 0;
+            width: 70%;
+            padding-right: 30px;
+            border-right: 1px solid #E7E7E7;
+
+            .type,
+            .usage {
+                color: #5A5A5A;
+                font-size: 13px;
+                font-weight: 700;
+                margin-bottom: 10px;
+
+                span {
+                    margin-right: 20px;
+                }
+
+                &.usage {
+                    font-weight: 500;
+                }
+            }
+        }
+
+        .right-side {
+            text-align: center;
+            width: 30%;
+            padding: 18px 0;
+
+            span {
+                display: block;
+                margin-bottom: 12px;
+            }
+
+            a.status {
+                color: #2D9CDB;
+                font-size: 13px;
+                font-weight: 700;
+            }
+        }
+    }
+}

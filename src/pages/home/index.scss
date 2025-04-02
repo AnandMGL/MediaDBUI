@@ -1,0 +1,22 @@
+.home-page {
+  .search {
+    margin-top: 60px;
+  }
+
+  .special-recruitment,
+  .career-insigts,
+  .all-jobs {
+    margin-top: 80px;
+  }
+
+  @media(max-width:767px) {
+    .all-jobs {
+      margin-top: 40px;
+    }
+
+    .career-insigts,
+    .special-recruitment {
+      margin-top: 60px;
+    }
+  }
+}

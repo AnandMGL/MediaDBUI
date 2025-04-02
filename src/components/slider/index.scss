@@ -1,0 +1,22 @@
+.slider {
+  position: relative;
+  .swiper {
+    border-radius: 20px;
+    height: 250px;
+    .swiper-wrapper {
+      .swiper-slide {
+        border-radius: 20px;
+        overflow: hidden;
+        a {
+          display: block;
+          height: 100%;
+          img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+  }
+}

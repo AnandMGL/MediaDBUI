@@ -1,0 +1,224 @@
+.kakao-content {
+    padding: 0 16px;
+    overflow: unset;
+    width: 408px;
+
+    .content-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .form-your-id {
+            margin: 40px 0px;
+            width: 100%;
+
+            h2 {
+                color: #6B7280;
+                text-align: center;
+                font-size: 16px;
+                font-weight: 500;
+                font-style: normal;
+                line-height: normal;
+                margin-bottom: 0;
+            }
+
+            .form-fields {
+                .field {
+                    margin: 20px 0px;
+                    padding: 14px 24px;
+                    border-radius: 5px;
+                    border: 1px solid #F0F0F0;
+                    background: #EEEAFB;
+                    color: #3A3A3A;
+                    font-size: 15px;
+                    line-height: 20px;;
+                }
+
+                .user-name {
+                    text-align: center;
+                    margin: 20px 0px;
+                    padding: 14px 24px;
+                    border-radius: 5px;
+                    border: 1px solid #F0F0F0;
+                    background: #EEEAFB;
+                    color: #000;;
+                    font-size: 18px;
+                    font-weight: 700;
+                }
+            }
+        }
+
+        .form-fields-pass {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 12px;
+            width: 100%;
+
+            h3 {
+                color: #5A5A5A;
+                font-size: 13px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 24px;
+                margin-bottom: 0;
+            }
+
+            .password-input-box {
+                display: flex;
+                justify-content: end;
+
+                .field-pass {
+                    position: relative;
+                    padding: 7px 10px;
+                    border-radius: 5px;
+                    border: 1px solid #E7E7E7;
+                    background: #FFF;
+                    color: #000;
+                    font-size: 13px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                    width: 238px;
+                }
+
+                .toggle-password-btn {
+                    position: absolute;
+                    cursor: pointer;
+
+                    img {
+                        width: 25px;
+                        padding: 3px;
+                        margin-top: 3px;
+                    }
+                  }
+
+            }
+
+           
+
+           
+        }
+
+        hr {
+            margin: 30px auto 0;
+        }
+
+        p {
+            color: #6B7280;
+            font-size: 16px;
+            font-weight: 500;
+            margin-top: 80px;
+            margin-bottom: 0px
+        }
+
+        .error-message {
+            font-size: 12px;
+            color: var(---, #F72323);
+            padding-top: 9px;
+        }
+
+        .helper-buttons  {
+            margin-bottom: 40px;
+            width: 100%;
+
+            .reset-btn {
+                padding: 12px 30px;
+                border-radius: 5px;
+                border: 1px solid #7653DF;
+                background: #FFF;
+                color: #7653DF;
+                text-align: center;
+                font-size: 13px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+            }
+
+            .btn {
+                padding: 12px 30px;
+                border-radius: 5px;
+                background: #8E66FF;
+                color: #FFF;
+                font-size: 13px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal
+            }
+        }
+
+    }
+
+    
+
+    @media(max-width: 767px) {
+        width: 100%;
+
+        .modal-top {
+            .title {
+                font-size: 16px!important;
+            }
+        }
+
+        .content-body {
+
+            p {
+                color: #6B7280;
+                font-size: 16px;
+                font-weight: 500;
+                // margin: 114px auto 99px;
+            }
+
+            .form-your-id {
+                margin: 20px 0px;
+
+                h2 {
+                    font-size: 14px;
+                }
+                
+                .user-name {
+                    padding: 8px 24px!important;
+                    font-size: 16px!important;
+                    margin: 10px 0px!important;
+                }
+            }
+
+            .field-pass {
+                width: 200px!important;
+            }
+            
+            .helper-buttons  {
+                margin-bottom: 40px;
+                width: 100%;
+
+                .reset-btn {
+                    padding: 12px 20px;
+                    border-radius: 5px;
+                    border: 1px solid #7653DF;
+                    background: #FFF;
+                    color: #7653DF;
+                    text-align: center;
+                    font-size: 13px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: normal;
+                }
+    
+                .btn {
+                    padding: 12px 20px;
+                    border-radius: 5px;
+                    background: #8E66FF;
+                    color: #FFF;
+                    font-size: 13px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: normal
+                }
+            }
+        }
+        
+
+
+    }
+}

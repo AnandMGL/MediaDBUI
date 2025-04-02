@@ -1,0 +1,15 @@
+.simple-checkbox {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    line-height: 1;
+    input {
+        width: auto;
+        accent-color: #7653DF;
+        border-radius: 4px;
+        border: 1px solid #7653DF;
+        background: #EEEAFB;
+        width: 15px;
+        height: 15px;
+    }
+}

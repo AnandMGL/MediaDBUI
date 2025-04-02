@@ -1,0 +1,31 @@
+.reference-card {
+    padding: 20px 14px;
+    border-radius: 10px;
+    border: 1px solid #E7E7E7;
+    background: #FFF;
+
+    span {
+        color: #8C8C8C;
+        font-size: 10px;
+        font-weight: 500;
+    }
+
+    hr {
+        margin: 12px 0 !important;
+    }
+
+    .card-content {
+        .type {
+            color: #5A5A5A;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #2D9CDB;
+            font-size: 12px;
+            font-weight: 700;
+        }
+    }
+}

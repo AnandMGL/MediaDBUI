@@ -1,0 +1,161 @@
+
+.headhunting-modal {
+    padding: 40px 20px;
+
+    bottom: 0px !important;
+    top: unset !important;
+    transform: translate(-50%, 0) !important;
+   
+
+    .modal-top {
+        .title {
+            font-size: 18px !important;
+        }
+
+        margin-bottom: 25px;
+    }
+
+    .head-hunting-form {
+        height: 80vh;
+        overflow: auto;
+
+        hr {
+            margin: 25px auto 20px;
+        }
+
+        .warning-box {
+            .text-title {
+                color: #5A5A5A;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                margin-bottom: 0;
+            }
+
+            .ellipse {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                margin-top: 16px;
+
+            }
+            
+            .warning-title {
+                color: #7653DF;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 26px;
+                padding-left: 10px;
+                margin-bottom: 0;
+            }
+
+        }
+
+        .form-fields {
+            margin-top: 40px;
+            .row {
+                --bs-gutter-x: 0;
+            }
+
+            .field-box {
+                margin-bottom: 24px;
+                display: block;
+
+                &:last-child {
+                    margin-bottom: 0;
+
+                    p {
+                        &:last-child {
+                            color: #98A6AD;
+                            font-size: 12px;
+                            font-weight: 500;
+                            display: block;
+                            margin-top: 6px;
+                        }
+                    }
+                }
+
+                p {
+                    margin-bottom: 8px;
+                    color: #5A5A5A;
+                    font-size: 13px;
+                    font-weight: 500;
+
+                    font {
+                        color: #DC3545;
+                        font-size: 13px;
+                    }
+                }
+
+                .field {
+                    border-radius: 5px;
+                    border: 1px solid #E7E7E7;
+                    background: #FFF;
+                    padding: 9.5px 16px;
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: #7A7A7A;
+
+                    &::placeholder {
+                        color: #CCC;
+                    }
+                }
+
+                .error-message {
+                    color: #DC3545;
+                    margin-bottom: 0px;
+                    margin-top: 4px;
+                }
+
+            }
+
+            textarea {
+                height: 365px;
+            }
+
+            .simple-checkbox {
+                color: #5A5A5A;
+                font-size: 13px;
+                font-weight: 700;
+            }
+
+            .simple-checkbox input {
+                margin-right: 6px;
+            }
+
+            .title-info {
+                color: #6B7280;
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+                padding-top: 20px;
+                margin-bottom:0;
+            }
+
+            .warning {
+                color: #6B7280;
+                font-size: 11px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                margin-bottom:0;
+            }
+        }
+
+        .headhunting-btn {
+            width: 100%;
+            justify-content: center;
+            color: #FFF;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 5px;
+            background: #7653DF;
+            padding: 11px 50px;
+            margin: 40px 0 0;
+        }
+
+    }
+}

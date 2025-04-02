@@ -1,0 +1,26 @@
+.link-button {
+    display: flex;
+    align-items: center;
+    color: #6b7280;
+    font-size: 16px;
+    text-decoration: none;
+
+    svg {
+      margin-right: 6px;
+
+      path {
+        transition: 0.3s linear;
+        stroke: #6b7280;
+      }
+    }
+
+    &:hover {
+      color: #3a343a;
+
+      svg {
+        path {
+          stroke: #3a343a;
+        }
+      }
+    }
+  }

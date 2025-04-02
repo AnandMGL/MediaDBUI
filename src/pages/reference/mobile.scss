@@ -1,0 +1,68 @@
+.reference-page {
+
+    .bread-crumb {
+        margin: 30px 0 34px 0;
+    }
+
+    h5.title {
+        margin: 0 0 14px 0;
+        font-weight: 700;
+        font-size: 28px;
+    }
+
+    .page-body {
+        .page-content {
+
+            padding: 30px 0;
+
+            hr {
+                margin: 20px 0;
+            }
+
+            .search {
+                justify-content: flex-start;
+
+                .field {
+                    border-radius: 5px;
+                    max-width: 400px;
+                    border: 1px solid #E7E7E7;
+                    background: #FFF;
+                    padding: 9.5px 16px;
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: #7A7A7A;
+
+                    &::placeholder {
+                        color: #CCC;
+                    }
+
+                }
+
+                p {
+                    display: none;
+                }
+
+                button {
+                    color: #7653DF;
+                    font-size: 13px;
+                    font-weight: 500;
+                    padding: 9.5px 20px;
+                    border-radius: 5px;
+                    background: #EEEAFB;
+                    white-space: nowrap;
+                    margin-left: 6px;
+                }
+            }
+
+            .reference-list {
+                margin: 20px 0;
+
+                .reference-card {
+                    margin-bottom: 10px;
+                    display: block;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}

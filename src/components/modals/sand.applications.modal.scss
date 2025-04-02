@@ -1,0 +1,102 @@
+.send-appliaction {
+    padding: 40px 20px;
+
+    .modal-top {
+        .title {
+            font-size: 18px !important;
+        }
+
+        margin-bottom: 25px;
+    }
+
+    .send-apply {
+
+        hr {
+            display: none;
+        }
+
+        .title {
+            display: none;
+        }
+
+        .warning-box {
+            .warning-title {
+                color: #8E66FF;
+                font-size: 14px;
+                font-weight: 500;
+                margin-bottom: 20px;
+            }
+
+            ul {
+                padding-left: 20px;
+                margin-bottom: 0;
+
+                li {
+                    color: #5A5A5A;
+                    font-size: 13px;
+                    font-weight: 500;
+                    line-height: 20px;
+                }
+            }
+        }
+
+        .form-fields {
+            margin-top: 40px;
+
+            .field-box {
+                margin-bottom: 24px;
+                display: block;
+
+                &:last-child {
+                    margin-bottom: 0;
+
+                    p {
+                        &:last-child {
+                            color: #98A6AD;
+                            font-size: 12px;
+                            font-weight: 500;
+                            display: block;
+                            margin-top: 6px;
+                        }
+                    }
+                }
+
+                p {
+                    margin-bottom: 8px;
+                    color: #5A5A5A;
+                    font-size: 13px;
+                    font-weight: 500;
+                }
+
+                .field {
+                    border-radius: 5px;
+                    border: 1px solid #E7E7E7;
+                    background: #FFF;
+                    padding: 9.5px 16px;
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: #7A7A7A;
+
+                    &::placeholder {
+                        color: #CCC;
+                    }
+                }
+
+
+            }
+        }
+
+        .apply-btn {
+            width: 100%;
+            justify-content: center;
+            color: #FFF;
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 5px;
+            background: #7653DF;
+            padding: 11px 50px;
+            margin: 40px 0 0;
+        }
+
+    }
+}

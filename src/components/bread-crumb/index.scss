@@ -1,0 +1,22 @@
+.bread-crumb {
+    margin: 2px 0 16px 25px;
+    display: flex;
+    align-items: center;
+
+    a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #6B7280;
+        font-size: 12px;
+
+        img {
+            width: 16px;
+            margin: 0 5px;
+        }
+
+        &:hover {
+            color: #3a3a3a;
+        }
+    }
+}

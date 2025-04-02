@@ -1,0 +1,85 @@
+.process {
+    .progress-row {
+        .progress-item {
+            width: 30%;
+            padding: 20px 40px;
+            border-radius: 36px;
+            border: 1px solid #EEEAFB;
+            background: #F9F8FE;
+
+            h6 {
+                margin: 0;
+                color: #6C45DC;
+                font-size: 22px;
+                font-weight: 700;
+                line-height: 1;
+            }
+        }
+
+        &.middle {
+            .progress-item {
+                margin: 8px 0 16px;
+                width: 30%;
+                padding: unset;
+                border-radius: unset;
+                border: none;
+                background: transparent;
+                text-align: center;
+
+                img {
+                    transform: rotate(90deg);
+                }
+            }
+        }
+
+        &.second {
+            .corner {
+                img {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+
+    @media(max-width:767px) {
+      
+        .progress-row {
+            display: block;
+
+            .progress-item,
+            .corner {
+                width: 100%;
+
+                h6 {
+                    font-size: 20px;
+                }
+            }
+
+            .progress-item {
+                padding: 14px 40px;
+            }
+
+            .corner {
+                margin: 6px 0 10px 40px;
+
+                img {
+                    transform: rotate(90deg) !important;
+                }
+            }
+
+        }
+
+        .progress-row.middle {
+            .progress-item {
+                width: 100%;
+                text-align: unset;
+                margin: 6px 0 10px;
+                padding: 0 40px;
+            }
+        }
+
+        .fade {
+            display: none;
+        }
+    }
+}

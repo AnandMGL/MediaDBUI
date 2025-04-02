@@ -1,0 +1,72 @@
+.pagination {
+  justify-content: center;
+  min-width: 250px;
+
+  .page-item {
+    margin: 0 4px;
+
+    .page-link {
+      border: none;
+      font-size: 16px;
+      color: #6B7280;
+      border-radius: 3px;
+      padding: 4px 8px;
+      line-height: 1;
+      font-weight: 400;
+      // width: 25px;
+      height: 25px;
+
+
+      &:focus {
+        box-shadow: none;
+        background-color: transparent;
+      }
+
+      &:hover {
+        background-color: #EFEFEF;
+      }
+
+      &.prev,
+      &.next {
+        display: block;
+        width: 25px;
+        height: 25px;
+        background-image: url("/assets/icons/arrow-down.svg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        transform: rotate(-90deg);
+
+        &.prev {
+          transform: rotate(90deg);
+        }
+      }
+
+
+    }
+
+    &.active {
+      .page-link {
+        background-color: #987EE7;
+        color: #fff;
+      }
+    }
+
+
+
+
+
+
+    // a:hover, a:focus,
+    // a:hover:before, a:hover:after,
+    // a:focus:before, a:focus:after {
+    //     color: #000;
+    // }
+
+
+
+  }
+
+  @media(max-width:767px) {
+    min-width: unset;
+  }
+}
