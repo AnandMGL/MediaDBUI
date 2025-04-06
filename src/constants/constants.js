@@ -107,6 +107,14 @@ export const valNumber = {
   },
 };
 
+export const validPhoneNumber = {
+  required: "전화번호를 입력해 주세요",
+  pattern: {
+    value: /^010-\d{4}-\d{4}$/, 
+    message: "전화번호를 입력해 주세요",
+  },
+};
+
 export const validateDate = (value) => {
   const inputDate = new Date(value);
   const currentDate = new Date();

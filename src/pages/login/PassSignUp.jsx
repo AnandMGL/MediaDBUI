@@ -13,6 +13,7 @@ import {
   validPassword,
   formatDateUser,
   formatPhoneNumber,
+  validPhoneNumber,
 } from "../../constants/constants";
 import { createUser } from "../../api/user";
 import { useDispatch } from "react-redux";
@@ -32,6 +33,7 @@ export default function PassSignUp({ setSection }) {
   const [image, setImage] = useState("");
   const [isError, setIsError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [phoneError, setPhoneError] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
 
   const [showPassword, setShowPassword] = useState(false);
@@ -116,6 +118,7 @@ export default function PassSignUp({ setSection }) {
       setErrorMsg("이미지를 선택해 주세요.");
       return;
     }
+ 
     setIsError(false);
     setIsSuccess(true);
 
@@ -388,6 +391,7 @@ export default function PassSignUp({ setSection }) {
                                   type="text"
                                   placeholder="010-2233-4455"
                                   name="phoneNumber"
+                                  {...register("phoneNumber", validPhoneNumber)}
                                   value={koPhoneNumber}
                                   onChange={handleChangeNumber}
                                 />
@@ -396,6 +400,7 @@ export default function PassSignUp({ setSection }) {
                                     {errors.phoneNumber.message}
                                   </p>
                                 )}
+                               
                               </div>
                             </div>
                           </div>
