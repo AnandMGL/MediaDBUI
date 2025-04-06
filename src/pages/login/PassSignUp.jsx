@@ -113,7 +113,7 @@ export default function PassSignUp({ setSection }) {
     setErrorMsg("");
     if (!image) {
       setIsError(true);
-      setErrorMsg("Please select a image.");
+      setErrorMsg("이미지를 선택해 주세요.");
       return;
     }
     setIsError(false);
@@ -233,12 +233,6 @@ export default function PassSignUp({ setSection }) {
                                 <p className="label mobile">
                                   성별<span>*</span>
                                 </p>
-                                {/* <input
-                                  disabled
-                                  className="field"
-                                  placeholder="내용을 입력하여 주세요"
-                                  defaultValue={enCodeData?.gender}
-                                /> */}
                                 <select
                                   className="field first"
                                   defaultValue={enCodeData?.gender}
@@ -269,8 +263,7 @@ export default function PassSignUp({ setSection }) {
                                 </select>
                                 {errors.eduLevel && (
                                   <p className="error-message">
-                                    {errors.eduLevel.message} Please select a
-                                    valid
+                                    {errors.eduLevel.message} 최종학력을 선택해 주세요
                                   </p>
                                 )}
                               </div>
@@ -284,7 +277,7 @@ export default function PassSignUp({ setSection }) {
                               <div className="w-100">
                                 <input
                                   className="field"
-                                  placeholder="내용을 입력하여 주세요"
+                                  placeholder="주소를 입력해 주세요"
                                   {...register("address", validAddress)}
                                 />
                                 {errors.address && (
@@ -305,7 +298,7 @@ export default function PassSignUp({ setSection }) {
                             <p className="label m-0" />
                             <input
                               className="field"
-                              placeholder="내용을 입력하여 주세요"
+                              placeholder="상세 주소를 입력해 주세요"
                               {...register("addressDetails")}
                             />
                           </div>
@@ -325,7 +318,7 @@ export default function PassSignUp({ setSection }) {
                                 <input
                                   className="field"
                                   type={showPassword ? "text" : "password"}
-                                  placeholder="내용을 입력하여 주세요"
+                                  placeholder="10자 이상 비밀번호를 입력해 주세요"
                                   {...register("password", validPassword)}
                                 />
                                 <Box
@@ -414,7 +407,7 @@ export default function PassSignUp({ setSection }) {
                               <input
                                 type="email"
                                 className="field"
-                                placeholder="내용을 입력하여 주세요"
+                                placeholder="이메일을 입력해 주세요"
                                 {...register("email", emailValid)}
                               />
                               {errors.email && (
@@ -431,7 +424,7 @@ export default function PassSignUp({ setSection }) {
                             <div className="w-100">
                               <input
                                 className="field"
-                                placeholder="내용을 입력하여 주세요"
+                                placeholder="아이디를 입력해주세요"
                                 {...register("username", validName)}
                               />
                               {errors.username && (
@@ -456,13 +449,13 @@ export default function PassSignUp({ setSection }) {
                               >
                                 <input
                                   className="field"
-                                  placeholder="내용을 입력하여 주세요"
+                                  placeholder="10자 이상 비밀번호를 입력해 주세요"
                                   type={hidePassword ? "text" : "password"}
                                   {...register("verifyPassword", {
                                     required: true,
                                     validate: (value) =>
                                       value === password ||
-                                      "The passwords do not match",
+                                      "비밀번호가 일치하지 않습니다",
                                   })}
                                 />
                                 <Box

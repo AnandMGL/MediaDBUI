@@ -44,7 +44,7 @@ export const HeadhuntingAddVal = {
 };
 
 export const validName = {
-  required: ' 아이디를 입력해주세요.',
+  required: ' 아이디를 입력해 주세요.',
   pattern: {
     // value: /^[A-Za-z]+$/i,
     message: "이 필드에는 이름이 필요합니다.",
@@ -66,7 +66,7 @@ export const validSelect = {
   },
 };
 export const validAddress = {
-  required: '주소를 입력해주세요.',
+  required: '주소를 입력해 주세요',
   minLength: {
     value: 6,
     message: "주소 최소 길이 6",
@@ -80,7 +80,7 @@ export const validPassword = {
   required: '"비밀번호를 입력해 주세요',
   minLength: {
     value: 10,
-    message: "10자 이상 입력해주세요.",
+    message: "10자 이상 입력해 주세요",
   },
   maxLength: {
     value: 20,
@@ -88,7 +88,7 @@ export const validPassword = {
   },
 };
 export const emailValid = {
-  required: '이메일을 입력해주세요.',
+  required: '이메일을 입력해 주세요',
   pattern: {
     value: /\S+@\S+\.\S+/,
     message: "입력한 값이 이메일 형식과 일치하지 않습니다.",
