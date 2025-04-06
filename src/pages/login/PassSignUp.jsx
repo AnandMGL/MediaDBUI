@@ -224,8 +224,8 @@ export default function PassSignUp({ setSection }) {
                               />
                             </div>
                           </div>
-                          <div className="field-box flex-center">
-                            <p className="label desktop">
+                          <div className="field-box flex-center alignItemBase">
+                            <p className="label desktop ">
                               성별<span>*</span>
                             </p>
                             <div className="d-flex w-100">
@@ -276,7 +276,7 @@ export default function PassSignUp({ setSection }) {
                               </div>
                             </div>
                           </div>
-                          <div className="field-box flex-center mobile-margin">
+                          <div className="field-box flex-center mobile-margin alignItemBase">
                             <p className="label">
                               주소<span>*</span>
                             </p>
@@ -309,7 +309,7 @@ export default function PassSignUp({ setSection }) {
                               {...register("addressDetails")}
                             />
                           </div>
-                          <div className="field-box flex-center">
+                          <div className="field-box flex-center alignItemBase">
                             <p className="label">
                               비밀번호<span>*</span>
                             </p>
@@ -406,7 +406,7 @@ export default function PassSignUp({ setSection }) {
                               </div>
                             </div>
                           </div>
-                          <div className="field-box flex-center">
+                          <div className="field-box flex-center alignItemBase">
                             <p className="label label-mr">
                               이메일<span>*</span>
                             </p>
@@ -424,7 +424,7 @@ export default function PassSignUp({ setSection }) {
                               )}
                             </div>
                           </div>
-                          <div className="field-box flex-center">
+                          <div className="field-box flex-center alignItemBase">
                             <p className="label label-mr">
                               아이디<span>*</span>
                             </p>
@@ -441,7 +441,7 @@ export default function PassSignUp({ setSection }) {
                               )}
                             </div>
                           </div>
-                          <div className="field-box flex-center">
+                          <div className="field-box flex-center alignItemBase">
                             <p className="label label-mr">
                               비밀번호 확인<span>*</span>
                             </p>
