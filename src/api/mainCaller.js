@@ -3,7 +3,7 @@ import axios from "axios";
 export const getMainUrl = () => {
   // return "http://146.120.18.92:9191"
   // return "http://112.175.18.143:9090";
-     return `http://dapi.mediadb.co.kr`;
+     return `http://13.209.2.62:9090`;
   // return `http://192.168.0.84:8080`;
   // return `http://192.168.0.173:8080`;
   // return "http://192.82.66.43:7070";
