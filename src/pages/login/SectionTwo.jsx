@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CustomModal from "../../components/modals/CustomModal";
 import TermsModal from "../../components/modals/TermsModal";
-import { mainCallerWithOutToken } from "../../api/mainCaller";
+import { mainCallerWithOutToken, getTermsAndCondition } from "../../api/mainCaller";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import NewTermsModal from "../../components/modals/NewTermsModal";
@@ -31,6 +31,9 @@ export default function SectionTwo({ setSection }) {
   const [modal, setModal] = useState({ isOpen: false });
   const [modalTerm, setModalTerm] = useState({ isOpen: false });
   const [encData, setEncData] = useState();
+  const [termsTitle, setTermsTitle] = useState("");
+  const [termsContent, setTermsContent] = useState("");
+  const [termsAndCondition, setTermsAndCondition] = useState([]);
 
   const validation = () => {
     if (all) {
@@ -41,7 +44,9 @@ export default function SectionTwo({ setSection }) {
     return true;
   };
 
-  const showTerms = () => {
+  const showTerms = (title, content) => {
+    setTermsTitle(title);
+    setTermsContent(content);
     setModal({ isOpen: true });
   };
   const showNewTerms = () => {
@@ -49,16 +54,39 @@ export default function SectionTwo({ setSection }) {
   };
 
   useEffect(() => {
-    if (Object.values(terms).every((term) => term)) {
-      setAll(true);
-    } else setAll(false);
+    const allChecked =
+      Object.keys(terms).length > 0 &&
+      Object.values(terms).every((v) => v === true);
+    setAll(allChecked);
   }, [terms]);
 
   useEffect(() => {
-    if (all) {
-      setTerms(initialTermsAll);
+    if (termsAndCondition.length > 0) {
+      const updated = {};
+      termsAndCondition.forEach((term) => {
+        updated[`term${term.id}`] = all; 
+      });
+      setTerms(updated);
     }
   }, [all]);
+
+  useEffect(() => {
+    const fetchTerms = async () => {
+      try {
+        const result = await getTermsAndCondition("termsList", "GET", null);
+        if (result.statusCode === 200) {
+          console.log('lagaaa ->>>' , result.data);
+          setTermsAndCondition(result.data);
+        }
+      } catch (error) {
+        toast.error(error.response?.data.message || "약관 불러오기 오류");
+      }
+    };
+  
+    fetchTerms();
+  }, []);
+
+ 
 
   const handlePass = async () => {
     try {
@@ -107,12 +135,10 @@ export default function SectionTwo({ setSection }) {
       <h5 className="terms">이용약관 및 개인 정보 취급 동의</h5>
       <div className="form-fields">
         <div className="field-box flex-center">
-          <input
+        <input
             id="all"
-            className="field"
             type="checkbox"
             checked={all}
-            disabled={Object.values(terms).every((term) => term)}
             onChange={() => setAll(!all)}
           />
           <label htmlFor="all">
@@ -123,7 +149,37 @@ export default function SectionTwo({ setSection }) {
           </label>
         </div>
         <hr />
-        <div className="field-box flex-center">
+
+        {termsAndCondition.map((term) => {
+          const key = `term${term.id}`;
+          return (
+            <div className="field-box flex-center" key={key}>
+              <input
+                id={key}
+                className="field"
+                type="checkbox"
+                checked={terms[key] || false}
+                onChange={() =>
+                  setTerms((prev) => ({ ...prev, [key]: !prev[key] }))
+                }
+              />
+              <label htmlFor={key}>
+                {term.title}
+              </label>
+              <button
+                className="btn read-more"
+                onClick={() => showTerms(term.title, term.content)}
+              >
+                상세보기
+              </button>
+            </div>
+          );
+        })}
+
+
+
+
+        {/* <div className="field-box flex-center">
           <input
             id="term1"
             className="field"
@@ -132,7 +188,7 @@ export default function SectionTwo({ setSection }) {
             onChange={() => setTerms({ ...terms, term1: !terms.term1 })}
           />
           <label htmlFor="term1">이용약관 동의(필수)</label>
-          <button className="btn read-more" onClick={showTerms}>
+          <button className="btn read-more" onClick={()=>showTerms("이용약관 동의(필수)")}>
             상세보기
           </button>
         </div>
@@ -145,7 +201,7 @@ export default function SectionTwo({ setSection }) {
             onChange={() => setTerms({ ...terms, term2: !terms.term2 })}
           />
           <label htmlFor="term2">개인정보 수집 및 이용에 대한 동의(필수)</label>
-          <button className="btn read-more" onClick={showTerms}>
+          <button className="btn read-more" onClick={()=>showTerms("개인정보 수집 및 이용에 대한 동의(필수)")}>
             상세보기
           </button>
         </div>
@@ -158,7 +214,7 @@ export default function SectionTwo({ setSection }) {
             onChange={() => setTerms({ ...terms, term3: !terms.term3 })}
           />
           <label htmlFor="term3">개인정보 수집ㆍ이용에 대한 동의(선택)</label>
-          <button className="btn read-more" onClick={showTerms}>
+          <button className="btn read-more" onClick={()=>showTerms("개인정보 수집ㆍ이용에 대한 동의(선택)")}>
             상세보기
           </button>
         </div>
@@ -171,7 +227,7 @@ export default function SectionTwo({ setSection }) {
             onChange={() => setTerms({ ...terms, term4: !terms.term4 })}
           />
           <label htmlFor="term4">개인정보의 제3자 제공 동의(필수)</label>
-          <button className="btn read-more" onClick={showTerms}>
+          <button className="btn read-more" onClick={()=>showTerms("개인정보의 제3자 제공 동의(필수)")}>
             상세보기
           </button>
         </div>
@@ -184,10 +240,10 @@ export default function SectionTwo({ setSection }) {
             onChange={() => setTerms({ ...terms, term5: !terms.term5 })}
           />
           <label htmlFor="term5">개인정보의 제3자 제공 동의(선택)</label>
-          <button className="btn read-more" onClick={showTerms}>
+          <button className="btn read-more" onClick={()=>showTerms("개인정보의 제3자 제공 동의(선택)")}>
             상세보기
           </button>
-        </div>
+        </div> 
 
         <div className="field-box flex-center">
           <input
@@ -200,10 +256,11 @@ export default function SectionTwo({ setSection }) {
           <label htmlFor="term5">
           개인정보 취급방침(선택)
           </label>
-          <button className="btn read-more" onClick={showNewTerms}>
+          <button className="btn read-more" onClick={()=>showTerms("개인정보 취급방침(선택)")}>
             상세보기
           </button>
         </div>
+        */}
       </div>
       <hr />
       <div className="helper-buttons flex-center">
@@ -229,9 +286,9 @@ export default function SectionTwo({ setSection }) {
         <CustomModal
           {...{ modal, setModal }}
           className="terms-modal"
-          title="이용약관"
+          title={termsTitle}
         >
-          <TermsModal />
+          <TermsModal  content={termsContent} />
         </CustomModal>
       )}
 
