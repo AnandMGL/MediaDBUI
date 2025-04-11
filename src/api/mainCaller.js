@@ -3,7 +3,7 @@ import axios from "axios";
 export const getMainUrl = () => {
   // return "http://146.120.18.92:9191"
   // return "http://112.175.18.143:9090";
-     return `http://13.209.2.62:9090`;
+  return `http://13.209.2.62:9090`;
   // return `http://192.168.0.84:8080`;
   // return `http://192.168.0.173:8080`;
   // return "http://192.82.66.43:7070";
@@ -135,6 +135,32 @@ export async function mainCallerWithOutToken(
   });
   return res.data;
 }
+
+export async function getTermsAndCondition(
+  path,
+  method = "GET",
+  data = null
+) {
+  const options = {
+    url: `${getMainUrl()}/${path}`,
+    headers: {
+      "Content-type": "application/json",
+      Accept: "application/json",
+    },
+    method,
+    withCredentials: false,
+  };
+  if (data) {
+    options.data = data;
+  }
+
+  const res = await axios(options).catch((err) => {
+    console.log(err);
+    throw err;
+  });
+  return res.data;
+}
+
 
 export async function pilaAuthUser(password, username) {
   const { data } = await axios.post(
