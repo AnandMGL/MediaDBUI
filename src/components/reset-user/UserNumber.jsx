@@ -55,7 +55,8 @@ export default function UserNumber({ UserNumberModalShow, setPhoneNumber }) {
           <div className="form-fields">
             <input
               className="field"
-              type="number"
+              type="text"
+              inputMode="numeric"
               placeholder="전화 번호를 입력해 주세요"
               {...register("phoneNumber")}
             />
