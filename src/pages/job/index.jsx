@@ -372,14 +372,8 @@ export default function Job() {
                                             <div className="info">
                                                 <p>모집기간</p>
                                                 <h6>
-                                                    {formatDate(
-                                                        jobData?.periodFrom
-                                                    )}{" "}
-                                                    부터{" "}
-                                                    {formatDate(
-                                                        jobData?.periodTo
-                                                    )}{" "}
-                                                    까지
+                                                    {jobData?.always === 1 ? "상시"
+                                                    : `${formatDate(jobData?.periodFrom)} 부터 ${formatDate(jobData?.periodTo)} 까지`}
                                                 </h6>
                                             </div>
                                             <div className="info">
