@@ -15,6 +15,8 @@ export default function CareerInsights(props) {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
 
+  let max = props.careerCategory?.length -1;
+
   useEffect(() => {
     getRecruitmentList();
 
@@ -116,7 +118,7 @@ export default function CareerInsights(props) {
             type: "fraction",
             el: ".swiper-pagination1",
           }}
-          navigation={{ nextEl: ".next-btn", prevEl: ".prev-btn" }}
+          // navigation={{ nextEl: ".next-btn", prevEl: ".prev-btn" }}
           modules={[Navigation, Pagination, A11y]}
           className="mySwiper"
         >
@@ -128,10 +130,19 @@ export default function CareerInsights(props) {
             );
           })}
         </Swiper>
-        <button className="prev-btn btn">
+     
+        <button className="prev-btn btn" disabled={active <= 0} onClick={() => {
+                  if (active >= 1) {
+                    setActive(active - 1);
+                  }
+                }}>
           <img src="/assets/icons/slide-next.svg" alt="prev" />
         </button>
-        <button className="next-btn btn">
+        <button className="next-btn btn"  disabled={active >= max} onClick={() => {
+                 if (active < max) {
+                  setActive(active + 1);
+                }
+                }}> 
           <img src="/assets/icons/slide-next.svg" alt="next" />
         </button>
       </div>
