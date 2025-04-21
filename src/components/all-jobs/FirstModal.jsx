@@ -84,7 +84,7 @@ export default function FirstModal({
           <div className="left-side flex-between">
             <label htmlFor="fileInput" className="file-upload-label">
               <h6 className="status">
-                {"writing" ? "업체 서식 이력서 업로드" : "작성 완료"}
+                {"writing" ? "등록된 이력서가 없습니다" : "작성 완료"}
               </h6>
               {selectedFile ? (
                 <Box
