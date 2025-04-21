@@ -80,7 +80,7 @@ export default function Job() {
             ).then((res) => {
                 if (res.statusCode === 200) {
                     setJobData(res.data);
-                    console.log("res  ----------------> ", JSON.stringify(res));
+                    console.log("res  ----------------> ", JSON.stringify(res.data.always));
                 }
             });
         } catch (error) {
@@ -372,7 +372,7 @@ export default function Job() {
                                             <div className="info">
                                                 <p>모집기간</p>
                                                 <h6>
-                                                    {jobData?.always === 1 ? "상시"
+                                                    {jobData?.always ? "상시"
                                                     : `${formatDate(jobData?.periodFrom)} 부터 ${formatDate(jobData?.periodTo)} 까지`}
                                                 </h6>
                                             </div>
