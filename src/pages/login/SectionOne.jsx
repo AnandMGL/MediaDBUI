@@ -73,7 +73,6 @@ export default function SectionOne({ setSection }) {
             if (user.statusCode === 200) {
               dispatch(setUserData(user.data));
               navigate("/");
-              toast.success(user.message);
             }
           })
           .catch((error) => {
