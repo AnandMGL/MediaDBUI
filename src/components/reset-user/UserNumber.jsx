@@ -32,7 +32,7 @@ export default function UserNumber({ UserNumberModalShow, setPhoneNumber }) {
           values
         );
         if (res.body.statusCode === 200) {
-          toast.success(res.body.message);
+          toast.success("인증번호가 발송되었습니다.");
           setPhoneNumber(res.body.data);
           UserNumberModalShow();
           setIsUploading(false);
