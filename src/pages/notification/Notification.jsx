@@ -32,7 +32,7 @@ export default function Notification({ pathname }) {
 
   const getNotification = async (query) => {
     try {
-      await mainCallerToken("notification", "POST", query).then((res) => {
+      await mainCallerToken("notification/statusActive", "POST", query).then((res) => {
         if (res.statusCode === 200) {
           setJobs(res.data);
         }
