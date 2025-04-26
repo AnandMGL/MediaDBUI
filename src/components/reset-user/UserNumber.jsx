@@ -32,7 +32,7 @@ export default function UserNumber({ UserNumberModalShow, setPhoneNumber }) {
           values
         );
         if (res.body.statusCode === 200) {
-          toast.success("인증번호가 발송되었습니다.");
+          toast.success("인증 번호가 발송 되었습니다.");
           setPhoneNumber(res.body.data);
           UserNumberModalShow();
           setIsUploading(false);
@@ -69,7 +69,7 @@ export default function UserNumber({ UserNumberModalShow, setPhoneNumber }) {
             </Button>
           ) : (
             <button className="btn" onClick={handleSubmit(onSubmit)}>
-              본인인증 진행하기
+              내 ID 확인
             </button>
           )}
         </div>
