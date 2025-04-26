@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import EasyActions from "../../components/easyActions";
 import { mainCallerToken } from "../../api/mainCaller";
@@ -191,7 +192,7 @@ export default function SectionFiveUpdate({
     <>
       <div className="page-content-five">
         <div className="content-top flex-between">
-          <button className="btn back-btn flex-center">
+          <button className="btn back-btn flex-center backBtn" onClick={() => setSection(2)}>
             <img src="/assets/icons/arrow-left-circle.svg" alt="back" />
             이력서 작성
           </button>
@@ -1297,21 +1298,30 @@ export default function SectionFiveUpdate({
           </div>
         </div>
         <EasyActions className="saver-buttons">
+          
+             <Link onClick={handleSubmit(onSubmit)} className="flex-center recruit">
+                <span>이력서 저장</span>
+                <img src="/assets/icons/check.svg" alt="recruit" />
+            </Link>
+            <Link onClick={handleSubmit(submit)} className="flex-center recruit ">
+                <span>임시저장</span>
+                <img src="/assets/icons/loader-2.svg" alt="panding" />
+            </Link>
+        </EasyActions>
+
+
+
+        <EasyActions className="saver-buttons">
           <div className="content-buttons">
-            <button
-              className="complete btn flex-center"
-              onClick={handleSubmit(onSubmit)}
-            >
-              <img src="/assets/icons/check.svg" alt="complete" />
-            </button>
-            <button
-              className="panding btn flex-center"
-              onClick={handleSubmit(submit)}
-            >
-              <img src="/assets/icons/loader-2.svg" alt="panding" />
-            </button>
+             
+
+
+           
+            
+           
           </div>
         </EasyActions>
+        
       </div>
 
       {modal.isOpen1 && (
