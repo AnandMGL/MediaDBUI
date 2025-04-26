@@ -49,7 +49,7 @@ export const ContentOfPdf = ({ data }) => {
                     <Text
                         style={{
                             textAlign: "start",
-                            fontSize: "12px",
+                            fontSize: "14px",
                             color: "#2A2A2A",
                             fontFamily: "pretendard",
                         }}
@@ -74,7 +74,7 @@ export const ContentOfPdf = ({ data }) => {
                                 width: "100%",
                             }}
                         >
-                            {data.type}
+                            {data.type} 
                         </Text>
                     </View>
 
@@ -222,11 +222,10 @@ export const ContentOfPdf = ({ data }) => {
                                                 color: "#2A2A2A",
                                                 fontFamily: "pretendard",
                                                 fontSize: "14px",
-                                                
                                                 textAlign: "left",
                                             }}
                                         >
-                                            {data.department}
+                                            {data.department} / {data.companyName}
                                         </Text>
                                     </View>
                                     <View
@@ -384,7 +383,7 @@ export const ContentOfPdf = ({ data }) => {
                                 <Text
                                     style={{
                                         fontFamily: "pretendard",
-                                        fontSize: "12px",
+                                        fontSize: "14px",
                                         textAlign: "center",
                                         paddingTop: "36px",
                                     }}
@@ -396,7 +395,7 @@ export const ContentOfPdf = ({ data }) => {
                                     style={{
                                         fontFamily: "pretendard",
                                         
-                                        fontSize: "12px",
+                                        fontSize: "14px",
                                         textAlign: "center",
                                         paddingTop: "36px",
                                     }}
@@ -415,7 +414,7 @@ export const ContentOfPdf = ({ data }) => {
                                     style={{
                                         fontFamily: "pretendard",
                                         
-                                        fontSize: "12px",
+                                        fontSize: "14px",
                                         textAlign: "center",
                                         paddingTop: "12px",
                                     }}
@@ -435,7 +434,7 @@ export const ContentOfPdf = ({ data }) => {
                                                 style={{
                                                     fontFamily: "pretendard",
                                                     
-                                                    fontSize: "12px",
+                                                    fontSize: "14px",
                                                     textAlign: "center",
                                                     paddingRight: "24px",
                                                 }}
@@ -446,7 +445,7 @@ export const ContentOfPdf = ({ data }) => {
                                                 style={{
                                                     fontFamily: "pretendard",
                                                     
-                                                    fontSize: "12px",
+                                                    fontSize: "14px",
                                                     textAlign: "center",
                                                 }}
                                             >
@@ -456,7 +455,7 @@ export const ContentOfPdf = ({ data }) => {
                                         <View
                                             style={{
                                                 flexDirection: "row",
-                                                paddingTop: "12px",
+                                                paddingTop: "14px",
                                                 display: "flex",
                                                 justifyContent: "center",
                                             }}
@@ -465,7 +464,7 @@ export const ContentOfPdf = ({ data }) => {
                                                 style={{
                                                     fontFamily: "pretendard",
                                                     
-                                                    fontSize: "12px",
+                                                    fontSize: "14px",
                                                     textAlign: "center",
                                                     paddingRight: "24px",
                                                 }}
@@ -476,7 +475,7 @@ export const ContentOfPdf = ({ data }) => {
                                                 style={{
                                                     fontFamily: "pretendard",
                                                     
-                                                    fontSize: "12px",
+                                                    fontSize: "14px",
                                                     textAlign: "center",
                                                 }}
                                             >
@@ -551,7 +550,7 @@ export const ContentOfPdf = ({ data }) => {
                         />
                         <Text
                             style={{
-                                fontSize: "12px",
+                                fontSize: "14px",
                                 marginRight: "32px",
                                 fontFamily: "pretendard",
                                 color: "#5A5A5A",
@@ -640,7 +639,7 @@ export default function CertificatePDF({ user, data, modal, setModal }) {
                         </Button>
                         <Typography
                             sx={{
-                                fontSize: "16px",
+                                fontSize: "14px",
                                 fontWeight: "700",
                                 marginBottom: "10px",
                                 color: "rgb(90, 90, 90)",
@@ -649,7 +648,7 @@ export default function CertificatePDF({ user, data, modal, setModal }) {
                             이력서 출력/보내기
                         </Typography>
                         <Typography
-                            sx={{ fontSize: "16px", color: "rgb(90, 90, 90)" }}
+                            sx={{ fontSize: "14px", color: "rgb(90, 90, 90)" }}
                         >
                             이력서를 PDF로 저장 또는 <br /> 이메일 보내기를
                             선택하여 주세요.
@@ -686,7 +685,7 @@ export default function CertificatePDF({ user, data, modal, setModal }) {
                                 style={{
                                     background: "#9775fa",
                                     color: "#212B36",
-                                    fontSize: "12px",
+                                    fontSize: "14px",
                                     borderRadius: "5px",
                                     border: "1px solid transparent",
                                     textDecoration: "none",

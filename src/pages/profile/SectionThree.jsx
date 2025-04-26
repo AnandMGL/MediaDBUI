@@ -217,7 +217,7 @@ export default function SectionThree() {
                     className="field"
                     placeholder="홍길동"
                     // {...register("username")}
-                    value={user.username}
+                    value={user.name}
                   />
                 </div>
                 <div className="field-box flex-center">
