@@ -613,3 +613,24 @@
         }
     }
 }
+
+
+@media screen and (min-width: 760px) and (max-width: 1200px) {
+    .field-box.flex-center.alignItemBase .d-flex {
+      flex-direction: column; 
+    }
+  
+    .field-box.flex-center.alignItemBase .d-flex .w-100 {
+      width: 100%;
+      margin-bottom: 10px; 
+    }
+  
+    .field-box.flex-center.alignItemBase .label-padding.desktop {
+      display: none; 
+    }
+  
+    .field-box.flex-center.alignItemBase .label-padding.mobile {
+      display: block; 
+    }
+  }
+  

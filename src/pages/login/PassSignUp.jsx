@@ -79,7 +79,7 @@ export default function PassSignUp({ setSection }) {
   const handleComplete = async (data) => {
     const address = await getCoordinatesByAddress(data.addressEnglish);
     if (address) {
-      setValue("address", address[0].address.addressLine1);
+      setValue("address", `${data.sido} ${data.sigungu} ${data.roadname} ${data.roadAddress.split(' ').slice(-1)[0]}`);
     }
   };
   const handleClick = () => {
@@ -102,22 +102,19 @@ export default function PassSignUp({ setSection }) {
   };
 
   const handleChangeNumber = (e) => {
-    const phoneNumber = e.target.value;
-    const formattedPhoneNumber = formatPhoneNumber(phoneNumber);
-
-    if (phoneNumber.length <= 12) {
-      setKoPhoneNumber(formattedPhoneNumber);
-    }
+    const input = e.target.value.replace(/\D/g, "");
+  
+    // зөвхөн 11 цифртэй болгоно (01012345678)
+    const trimmed = input.slice(0, 11);
+  
+    setKoPhoneNumber(formatPhoneNumber(trimmed));
   };
+  
 
   const onSubmit = async (values) => {
     if (isError) return;
     setErrorMsg("");
-    if (!image) {
-      setIsError(true);
-      setErrorMsg("이미지를 선택해 주세요.");
-      return;
-    }
+
  
     setIsError(false);
     setIsSuccess(true);
@@ -125,7 +122,7 @@ export default function PassSignUp({ setSection }) {
     const userData = {
       ...values,
       profilePicture: "image",
-      file: image,
+      file: image || null,
       name: enCodeData?.name,
       gender: enCodeData?.gender,
       birthday: encDate,
@@ -282,6 +279,16 @@ export default function PassSignUp({ setSection }) {
                                   className="field"
                                   placeholder="주소를 입력해 주세요"
                                   {...register("address", validAddress)}
+                                  value={watch("address")}
+                                  onChange={(e) => {
+                                    const value = e.target.value;
+                                    if (value.length > 150) {
+                                      setErrorMsg("최대 길이에 대한 사용자 정의 오류 메시지 주소");
+                                    } else {
+                                      setErrorMsg("");
+                                    }
+                                    setValue("address", value);
+                                  }}
                                 />
                                 {errors.address && (
                                   <p className="error-message">
@@ -394,6 +401,7 @@ export default function PassSignUp({ setSection }) {
                                   {...register("phoneNumber", validPhoneNumber)}
                                   value={koPhoneNumber}
                                   onChange={handleChangeNumber}
+                                  disabled={false}
                                 />
                                 {errors.phoneNumber && (
                                   <p className="error-message">

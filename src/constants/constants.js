@@ -110,9 +110,10 @@ export const valNumber = {
 export const validPhoneNumber = {
   required: "전화번호를 입력해 주세요",
   pattern: {
-    value: /^010-\d{4}-\d{4}$/, 
-    message: "전화번호를 입력해 주세요",
-  },
+    value: /^\d{3}-\d{3,4}-\d{4}$/,
+    message: "유효한 전화번호 형식이 아닙니다."
+  }
+  
 };
 
 export const validateDate = (value) => {
@@ -361,21 +362,21 @@ export const formatDate = (value) => {
 };
 
 export const formatPhoneNumber = (phoneNumber) => {
-  // Remove all non-numeric characters from the input string
+  const cleaned = phoneNumber.replace(/\D/g, "");
 
-  const cleaned = ("" + phoneNumber).replace(/\D/g, "");
-
-  // Check if the cleaned phone number has a valid length
-  const match = cleaned.match(/^(\d{3})(\d{4})(\d{4})$/);
-
-  if (match) {
-    // If the phone number matches the expected format, return the formatted string
-    return match[1] + "-" + match[2] + "-" + match[3];
+  if (cleaned.length <= 3) {
+    return cleaned;
+  } else if (cleaned.length <= 7) {
+    return `${cleaned.slice(0, 3)}-${cleaned.slice(3)}`;
+  } else if (cleaned.length <= 11) {
+    return `${cleaned.slice(0, 3)}-${cleaned.slice(3, 7)}-${cleaned.slice(7)}`;
   }
 
-  // If the phone number does not match the expected format, return null or the original input
-  return null; // or return phoneNumber;
+  // 11 оронтойгоос хэтэрвэл нэмэхгүй, харин бүрэн буцаа
+  return `${cleaned.slice(0, 3)}-${cleaned.slice(3, 7)}-${cleaned.slice(7, 11)}`;
 };
+
+
 
 export const formatKoreanPhoneNumber = (phoneNumber) => {
   if (!phoneNumber) return ""; // Return empty string if phone number is not provided
