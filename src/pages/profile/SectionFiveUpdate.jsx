@@ -392,10 +392,10 @@ export default function SectionFiveUpdate({
                   </span>
                 </div>
               </div>
-              <div className="col-md-5 first">
-                <p className="label top">재학 기간</p>
+              <div className="col-md-6 first">
+                <p className="label top">경력 기간</p>
               </div>
-              <div className="col-md-2">
+              <div className="col-md-1">
                 <p className="label top">학교명</p>
               </div>
               <div className="col-md-1">
@@ -419,7 +419,7 @@ export default function SectionFiveUpdate({
               {eduHistories?.map((item, i) => {
                 return (
                   <div className="section-add-row" key={i}>
-                    <div className="col-md-5 first">
+                    <div className="col-md-6 first">
                       <div className="flex-box flex-center">
                         {dynamicComponents(
                           `eduHistories[${i}].fromYear`,
@@ -447,7 +447,7 @@ export default function SectionFiveUpdate({
                         <p className="label">월 까지</p>
                       </div>
                     </div>
-                    <div className="col-md-2">
+                    <div className="col-md-1">
                       <input
                         className="field"
                         placeholder="내용을 입력해주세요"
@@ -509,10 +509,10 @@ export default function SectionFiveUpdate({
               <div className="col-12">
                 <h5 className="title">4. 해외연수/아카데미</h5>
               </div>
-              <div className="col-md-5 first">
+              <div className="col-md-6 first">
                 <p className="label top">재학 기간</p>
               </div>
-              <div className="col-md-3">
+              <div className="col-md-2">
                 <p className="label top">학교명</p>
               </div>
               <div className="col-md-2">
@@ -524,7 +524,7 @@ export default function SectionFiveUpdate({
               {interEduHistories?.map((item, i) => {
                 return (
                   <div className="section-add-row" key={i}>
-                    <div className="col-md-5 first">
+                    <div className="col-md-6 first">
                       <div className="flex-box flex-center">
                         {dynamicComponents(
                           `interEduHistories[${i}].fromYear`,
@@ -552,7 +552,7 @@ export default function SectionFiveUpdate({
                         <p className="label">월 까지</p>
                       </div>
                     </div>
-                    <div className="col-md-3">
+                    <div className="col-md-2">
                       <input
                         className="field"
                         placeholder="내용을 입력해주세요"
@@ -767,10 +767,10 @@ export default function SectionFiveUpdate({
               <div className="col-12">
                 <h5 className="title">7. 경력 상세 사항</h5>
               </div>
-              <div className="col-md-5 first">
+              <div className="col-md-6 first">
                 <p className="label top">재학 기간</p>
               </div>
-              <div className="col-md-7 last">
+              <div className="col-md-6 last">
                 <div className="row">
                   <div className="col-md-2 first">
                     <p className="label top">근무업체명</p>
@@ -795,7 +795,7 @@ export default function SectionFiveUpdate({
 
               {careerDetails?.map((item, i) => (
                 <div key={i} className="section-add-row">
-                  <div className="col-md-5 first">
+                  <div className="col-md-6 first">
                     <div className="flex-box flex-center">
                       {dynamicComponents(
                         `careerDetails[${i}].fromYear`,
@@ -823,7 +823,7 @@ export default function SectionFiveUpdate({
                       <p className="label">월 까지</p>
                     </div>
                   </div>
-                  <div className="col-md-7 last">
+                  <div className="col-md-6 last">
                     <div className="row">
                       <div className="col-md-2 first">
                         <input
@@ -1089,7 +1089,7 @@ export default function SectionFiveUpdate({
               <div className="col-md-2 first">
                 <p className="label top">어학 구분</p>
               </div>
-              <div className="col-md-3">
+              <div className="col-md-2">
                 <p className="label top">공인 시험명</p>
               </div>
               <div className="col-md-2">
@@ -1111,7 +1111,7 @@ export default function SectionFiveUpdate({
               <div className="col-md-2 first">
                 {dynamicComponents(`languageGrades[0].languageName`, languages)}
               </div>
-              <div className="col-md-3">
+              <div className="col-md-2">
                 <input
                   className="field"
                   placeholder="내용을 입력해주세요"
@@ -1125,7 +1125,7 @@ export default function SectionFiveUpdate({
                   {...register(`languageGrades[0].score`)}
                 />
               </div>
-              <div className="col-md-2">
+              <div className="col-md-3">
                 <div className="flex-box flex-center">
                   {dynamicComponents(`languageGrades[0].year`, year)}
                   <p className="label">년</p>
@@ -1145,7 +1145,7 @@ export default function SectionFiveUpdate({
               <div className="col-md-2 first">
                 {dynamicComponents(`languageGrades[1].languageName`, languages)}
               </div>
-              <div className="col-md-3">
+              <div className="col-md-2">
                 <input
                   className="field"
                   placeholder="내용을 입력해주세요"
@@ -1159,7 +1159,7 @@ export default function SectionFiveUpdate({
                   {...register(`languageGrades[1].score`)}
                 />
               </div>
-              <div className="col-md-2">
+              <div className="col-md-3">
                 <div className="flex-box flex-center">
                   {dynamicComponents(`languageGrades[1].year`, year)}
                   <p className="label">년</p>
@@ -1180,7 +1180,7 @@ export default function SectionFiveUpdate({
               <div className="col-md-2 first">
                 {dynamicComponents(`languageGrades[2].languageName`, languages)}
               </div>
-              <div className="col-md-3">
+              <div className="col-md-2">
                 <input
                   className="field"
                   placeholder="내용을 입력해주세요"
@@ -1194,7 +1194,7 @@ export default function SectionFiveUpdate({
                   {...register(`languageGrades[2].score`)}
                 />
               </div>
-              <div className="col-md-2">
+              <div className="col-md-3">
                 <div className="flex-box flex-center">
                   {dynamicComponents(`languageGrades[2].year`, year)}
                   <p className="label">년</p>
