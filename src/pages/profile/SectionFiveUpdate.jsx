@@ -1220,6 +1220,7 @@ export default function SectionFiveUpdate({
               <div className="col-12">
                 <h5 className="title">11. 성장과정</h5>
                 <textarea
+                  maxLength={1000}
                   className="field"
                   placeholder="내용을 입력하여 주세요"
                   {...register("growthProcess")}
@@ -1231,6 +1232,7 @@ export default function SectionFiveUpdate({
               <div className="col-12">
                 <h5 className="title">12. 성격의 장/단점</h5>
                 <textarea
+                  maxLength={1000}
                   className="field"
                   placeholder="내용을 입력하여 주세요"
                   {...register("personality")}
@@ -1242,6 +1244,7 @@ export default function SectionFiveUpdate({
               <div className="col-12">
                 <h5 className="title">13. 지원동기</h5>
                 <textarea
+                  maxLength={1000}
                   className="field"
                   placeholder="내용을 입력하여 주세요"
                   {...register("motive")}
@@ -1253,6 +1256,7 @@ export default function SectionFiveUpdate({
               <div className="col-12">
                 <h5 className="title">14. 보유기술</h5>
                 <textarea
+                  maxLength={1000}
                   className="field"
                   placeholder="내용을 입력하여 주세요"
                   {...register("technology")}
@@ -1264,6 +1268,7 @@ export default function SectionFiveUpdate({
               <div className="col-12">
                 <h5 className="title">15. 입사가능시기</h5>
                 <textarea
+                  maxLength={1000}
                   className="field"
                   placeholder="내용을 입력하여 주세요"
                   {...register("availableFrom")}
