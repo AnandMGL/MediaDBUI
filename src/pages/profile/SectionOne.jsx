@@ -218,7 +218,7 @@ export default function SectionOne() {
                   <p className="label m-0" />
                   <input
                     className="field"
-                    placeholder="내용을 입력하여 주세요"
+                    placeholder="상세주소를 입력하여 주세요"
                     {...register("addressDetails")}
                   />
                 </div>
@@ -295,14 +295,13 @@ export default function SectionOne() {
                 <div className="field-box flex-center">
                   <p className="label label-mr">이메일</p>
                   <input
-                    disabled
                     className="field"
                     placeholder="내용을 입력하여 주세요"
                     {...register("email")}
                   />
                 </div>
                 <div className="field-box flex-center">
-                  <p className="label label-mr">아이디</p>
+                  <p className="label label-mr">신청자명</p>
                   <input
                     className="field"
                     disabled

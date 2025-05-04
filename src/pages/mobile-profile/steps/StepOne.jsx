@@ -149,7 +149,7 @@ export default function StepOne({ setActiveStep, setResume, resume }) {
               <input
                 disabled
                 className="field"
-                placeholder="내용을 입력하여 주세요"
+                placeholder="상세주소를 입력하여 주세요"
                 {...register("addressDetails")}
               />
             </div>

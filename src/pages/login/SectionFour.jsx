@@ -235,7 +235,7 @@ export default function SectionFour({ setSection }) {
                     )}
                   </div>
                   <button className="btn search" onClick={handleClick}>
-                    검색
+                    검색 11
                   </button>
                 </div>
               </div>
@@ -243,7 +243,7 @@ export default function SectionFour({ setSection }) {
                 <p className="label m-0" />
                 <input
                   className="field"
-                  placeholder="내용을 입력하여 주세요"
+                  placeholder="상세주소를 입력하여 주세요"
                   {...register("addressDetails")}
                 />
               </div>

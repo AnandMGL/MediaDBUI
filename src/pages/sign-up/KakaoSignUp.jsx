@@ -132,7 +132,7 @@ export default function KakaoSignUp() {
     setErrorMsg("");
     if (!image) {
       setIsError(true);
-      setErrorMsg("Please select a image.");
+      setErrorMsg("이미지를 선택해주세요.");
       return;
     }
     setIsError(false);
@@ -308,7 +308,7 @@ export default function KakaoSignUp() {
                     <p className="label m-0" />
                     <input
                       className="field"
-                      placeholder="내용을 입력하여 주세요"
+                      placeholder="상세주소를 입력하여 주세요"
                       {...register("addressDetails")}
                     />
                   </div>
