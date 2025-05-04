@@ -76,7 +76,7 @@ export default function Footer() {
               </Link>
             </div>
             <div className="col-md-2 right">
-              <h5>SNS</h5>
+            <h5 style={{fontWeight:'bold'}}>SNS</h5>
               <SocialMedia />
               {/* <span>© 2023 TailGrids.</span> */}
             </div>
