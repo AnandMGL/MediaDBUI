@@ -39,7 +39,7 @@ export default function PassSignUp({ setSection }) {
   const [showPassword, setShowPassword] = useState(false);
   const [hidePassword, setHidePassword] = useState(false);
   const [enCodeData, setEnCodeData] = useState();
-  const [loader, setLoader] = useState(true);
+  const [loader, setLoader] = useState(false);
   const [koPhoneNumber, setKoPhoneNumber] = useState("");
 
   const handleTogglePassword = () => {
@@ -508,10 +508,27 @@ export default function PassSignUp({ setSection }) {
 
                   <hr />
                   <div className="buttom-buttons flex-between">
-                    <button className="btn back" onClick={() => setSection(3)}>
+                    <button
+                     style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        textAlign: 'center',
+                     
+                        padding: '12px 20px'
+                      }} 
+                    className="btn back" onClick={() => setSection(3)}>
                       뒤로가기
                     </button>
                     <button
+                     style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        textAlign: 'center',
+                         
+                        padding: '12px 20px'
+                      }}
                       className="btn submit"
                       onClick={handleSubmit(onSubmit)}
                     >

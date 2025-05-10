@@ -92,7 +92,7 @@ export default function UserCode({
           <div className="form-fields">
             <input
               className="field"
-              type="number"
+              // type="number"
               placeholder="인증 번호를 입력해 주세요"
               {...register("code")}
             />
@@ -102,7 +102,8 @@ export default function UserCode({
 
         <div className="helper-buttons flex-between">
           <button className="reset-btn" onClick={handleSubmit(onSubmit)}>
-            비밀번호 재설정
+            {/* 비밀번호 재설정 */}
+            내 ID 확인
           </button>
 
           <button className="btn" onClick={handleSubmit(onSubmitUserName)}>
