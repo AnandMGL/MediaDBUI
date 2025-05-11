@@ -18,12 +18,35 @@ export default function NotificationDtl() {
 
   const [notifData, setNotifData] = useState([]);
 
-  const handleDownloadClick = () => {
-    const downloadLink = imgURL + notifData?.attachment;
+  // const handleDownloadClick = () => {
+  //   const downloadLink = imgURL + notifData?.attachment;
 
-    const newTab = window.open(downloadLink, "_blank");
-    newTab.focus();
-  };
+  //   const newTab = window.open(downloadLink, "_blank");
+  //   newTab.focus();
+  // };
+
+//   const handleDownloadClick = (fileName) => {
+//     console.log('file -name- ----->' , fileName);
+//     const downloadLink = imgURL + notifData?.attachment;
+
+//     const link = document.createElement("a");
+//     link.href = downloadLink;
+//     link.download = fileName;
+//     document.body.appendChild(link);
+//     link.click();
+//     document.body.removeChild(link);
+// };
+
+const handleDownloadClick = (fileName) => {
+  const downloadLink = imgURL + notifData?.attachment;
+  const link = document.createElement("a");
+  link.href = downloadLink;
+  link.download = fileName || "default.pdf";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
 
   useEffect(() => {
     getNotifDetail();
@@ -79,7 +102,7 @@ export default function NotificationDtl() {
                   <div className="bottom flex-between">
                     <h5>첨부파일</h5>
                     <h5>
-                      <Link to="#" onClick={handleDownloadClick}>
+                      <Link to="#" onClick={()=>handleDownloadClick(notifData.attachmentName)}>
                         {notifData.attachmentName}
                       </Link>
                     </h5>

@@ -18,12 +18,25 @@ export default function ReferDetail() {
 
   const [referData, setReferData] = useState([]);
 
-  const handleDownloadClick = () => {
-    const downloadLink = imgURL + referData?.attachment;
+  // const handleDownloadClick = () => {
+  //   const downloadLink = imgURL + referData?.attachment;
 
-    const newTab = window.open(downloadLink, "_blank");
-    newTab.focus();
-  };
+  //   const newTab = window.open(downloadLink, "_blank");
+  //   newTab.focus();
+  // };
+
+  const handleDownloadClick = (fileName) => {
+    console.log('file -name- ----->' , fileName);
+    const fileURL = imgURL + referData?.attachment;
+
+    const link = document.createElement("a");
+    link.href = fileURL;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+};
+
 
   useEffect(() => {
     getReferDetail();
@@ -79,8 +92,8 @@ export default function ReferDetail() {
                   <div className="bottom flex-between">
                     <h5>첨부파일</h5>
                     <h5>
-                      <Link to="#" onClick={handleDownloadClick}>
-                        {referData.attachmentName}
+                      <Link to="#" onClick={handleDownloadClick(referData.attachmentName)}>
+                        {referData.attachmentName} aa
                       </Link>
                     </h5>
                   </div>
