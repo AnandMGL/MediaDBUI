@@ -36,12 +36,16 @@ export default function SectionTwo({ setSection }) {
   const [termsAndCondition, setTermsAndCondition] = useState([]);
 
   const validation = () => {
-    if (all) {
-      return false;
-    } else if (terms.term1 && terms.term2 && terms.term4) {
-      return false;
-    }
-    return true;
+    
+    const requiredTerms = termsAndCondition.filter(term =>
+      term.title.includes("(필수)")
+    );
+    const allRequiredChecked = requiredTerms.every(term => {
+      const key = `term${term.id}`;
+      return terms[key]; 
+    });
+  
+    return !allRequiredChecked; 
   };
 
   const showTerms = (title, content) => {
@@ -64,7 +68,7 @@ export default function SectionTwo({ setSection }) {
     if (termsAndCondition.length > 0) {
       const updated = {};
       termsAndCondition.forEach((term) => {
-        updated[`term${term.id}`] = all; 
+        updated[`term${term.id}`] = false; 
       });
       setTerms(updated);
     }
@@ -75,7 +79,6 @@ export default function SectionTwo({ setSection }) {
       try {
         const result = await getTermsAndCondition("termsList", "GET", null);
         if (result.statusCode === 200) {
-          console.log('lagaaa ->>>' , result.data);
           setTermsAndCondition(result.data);
         }
       } catch (error) {
