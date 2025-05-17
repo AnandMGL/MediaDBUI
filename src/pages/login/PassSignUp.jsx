@@ -103,8 +103,6 @@ export default function PassSignUp({ setSection }) {
 
   const handleChangeNumber = (e) => {
     const input = e.target.value.replace(/\D/g, "");
-  
-    // зөвхөн 11 цифртэй болгоно (01012345678)
     const trimmed = input.slice(0, 11);
   
     setKoPhoneNumber(formatPhoneNumber(trimmed));

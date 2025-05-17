@@ -96,7 +96,7 @@ export default function KakaoSignUp() {
   const handleComplete = async (data) => {
     const address = await getCoordinatesByAddress(data.addressEnglish);
     if (address) {
-      setValue("address", address[0].address.addressLine1);
+      setValue("address", `${data.sido} ${data.sigungu} ${data.roadname} ${data.roadAddress.split(' ').slice(-1)[0]}`);
     }
   };
   const handleClick = () => {
