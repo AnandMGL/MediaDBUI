@@ -22,7 +22,7 @@ export default function InsightCard({ content }) {
       </div>
       <div className="footer-card">
         <span className="notice-dedline">
-          {formatDate(content.noticeDedline)}
+          {formatDate(content.periodTo)}
         </span>
       </div>
     </Link>
