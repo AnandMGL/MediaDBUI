@@ -110,6 +110,13 @@ export default function PassSignUp({ setSection }) {
   
 
   const onSubmit = async (values) => {
+
+    if (!image) {
+      setIsError(true);
+      setErrorMsg("이미지를 선택해 주세요."); 
+      return;
+    }
+
     if (isError) return;
     setErrorMsg("");
 
@@ -193,7 +200,7 @@ export default function PassSignUp({ setSection }) {
                           className="success-text"
                           style={{ color: "green" }}
                         >
-                          Valid File Type
+                          {/* Valid File Type */}
                         </div>
                       )}
 
