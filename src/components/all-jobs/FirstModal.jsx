@@ -102,7 +102,7 @@ export default function FirstModal({
                   {selectedFile.name}
                 </Box>
               ) : (
-                <h6 className="file-upload-label desktop">*OOO 이력서.docx</h6>
+                <h6 className="file-upload-label desktop">이력서를 선택해 주세요.</h6>
               )}
             </label>
             <input
@@ -131,7 +131,7 @@ export default function FirstModal({
                   {selectedFile.name}
                 </Box>
               ) : (
-                <h6 className="file-upload-label mobile">*OOO 이력서.docx</h6>
+                <h6 className="file-upload-label mobile">이력서를 선택해 주세요.</h6>
               )}
             </label>
             <div className="flex-center">
