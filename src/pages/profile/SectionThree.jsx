@@ -154,6 +154,7 @@ export default function SectionThree() {
                       }}
                     >
                       <Link>{item.status === "APPROVED" && "허가"}</Link>
+                      
                     </td>
                   ) : (
                     <td>
@@ -223,7 +224,7 @@ export default function SectionThree() {
                 <div className="field-box flex-center">
                   <p className="label">E-mail</p>
                   <input
-                    disabled
+                    // disabled
                     className="field"
                     placeholder="hong123@gmail.com"
                     // {...register("email")}
@@ -233,7 +234,7 @@ export default function SectionThree() {
                 <div className="field-box flex-center">
                   <p className="label">연락처</p>
                   <input
-                    disabled
+                    // disabled
                     className="field"
                     placeholder="010-2233-4455"
                     // {...register("phone")}
