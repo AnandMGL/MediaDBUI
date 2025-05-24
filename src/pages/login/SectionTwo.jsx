@@ -72,7 +72,7 @@ export default function SectionTwo({ setSection }) {
       });
       setTerms(updated);
     }
-  }, [all]);
+  }, [termsAndCondition]);
 
   useEffect(() => {
     const fetchTerms = async () => {
@@ -128,6 +128,14 @@ export default function SectionTwo({ setSection }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [encData]);
 
+  const handleCheckAll = (checked) => {
+  setAll(checked);
+  const updated = {};
+  termsAndCondition.forEach((term) => {
+    updated[`term${term.id}`] = checked;
+  });
+  setTerms(updated);
+};
   return (
     <div className="page-content-two flex-center">
       <form name="form_chk" method="post">
@@ -138,11 +146,11 @@ export default function SectionTwo({ setSection }) {
       <h5 className="terms">이용약관 및 개인 정보 취급 동의</h5>
       <div className="form-fields">
         <div className="field-box flex-center">
-        <input
+          <input
             id="all"
             type="checkbox"
             checked={all}
-            onChange={() => setAll(!all)}
+            onChange={(e) => handleCheckAll(e.target.checked)}
           />
           <label htmlFor="all">
             이용약관 전체 동의
@@ -179,91 +187,6 @@ export default function SectionTwo({ setSection }) {
           );
         })}
 
-
-
-
-        {/* <div className="field-box flex-center">
-          <input
-            id="term1"
-            className="field"
-            type="checkbox"
-            checked={terms.term1}
-            onChange={() => setTerms({ ...terms, term1: !terms.term1 })}
-          />
-          <label htmlFor="term1">이용약관 동의(필수)</label>
-          <button className="btn read-more" onClick={()=>showTerms("이용약관 동의(필수)")}>
-            상세보기
-          </button>
-        </div>
-        <div className="field-box flex-center">
-          <input
-            id="term2"
-            className="field"
-            type="checkbox"
-            checked={terms.term2}
-            onChange={() => setTerms({ ...terms, term2: !terms.term2 })}
-          />
-          <label htmlFor="term2">개인정보 수집 및 이용에 대한 동의(필수)</label>
-          <button className="btn read-more" onClick={()=>showTerms("개인정보 수집 및 이용에 대한 동의(필수)")}>
-            상세보기
-          </button>
-        </div>
-        <div className="field-box flex-center">
-          <input
-            id="term3"
-            className="field"
-            type="checkbox"
-            checked={terms.term3}
-            onChange={() => setTerms({ ...terms, term3: !terms.term3 })}
-          />
-          <label htmlFor="term3">개인정보 수집ㆍ이용에 대한 동의(선택)</label>
-          <button className="btn read-more" onClick={()=>showTerms("개인정보 수집ㆍ이용에 대한 동의(선택)")}>
-            상세보기
-          </button>
-        </div>
-        <div className="field-box flex-center">
-          <input
-            id="term4"
-            className="field"
-            type="checkbox"
-            checked={terms.term4}
-            onChange={() => setTerms({ ...terms, term4: !terms.term4 })}
-          />
-          <label htmlFor="term4">개인정보의 제3자 제공 동의(필수)</label>
-          <button className="btn read-more" onClick={()=>showTerms("개인정보의 제3자 제공 동의(필수)")}>
-            상세보기
-          </button>
-        </div>
-        <div className="field-box flex-center">
-          <input
-            id="term5"
-            className="field"
-            type="checkbox"
-            checked={terms.term5}
-            onChange={() => setTerms({ ...terms, term5: !terms.term5 })}
-          />
-          <label htmlFor="term5">개인정보의 제3자 제공 동의(선택)</label>
-          <button className="btn read-more" onClick={()=>showTerms("개인정보의 제3자 제공 동의(선택)")}>
-            상세보기
-          </button>
-        </div> 
-
-        <div className="field-box flex-center">
-          <input
-            id="term6"
-            className="field"
-            type="checkbox"
-            checked={terms.term6}
-            onChange={() => setTerms({ ...terms, term6: !terms.term6 })}
-          />
-          <label htmlFor="term5">
-          개인정보 취급방침(선택)
-          </label>
-          <button className="btn read-more" onClick={()=>showTerms("개인정보 취급방침(선택)")}>
-            상세보기
-          </button>
-        </div>
-        */}
       </div>
       <hr />
       <div className="helper-buttons flex-center">
