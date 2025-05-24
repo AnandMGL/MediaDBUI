@@ -768,7 +768,7 @@ export default function SectionFiveUpdate({
                 <h5 className="title">7. 경력 상세 사항</h5>
               </div>
               <div className="col-md-6 first">
-                <p className="label top">재학 기간</p>
+                <p className="label top">경력 기간</p>
               </div>
               <div className="col-md-6 last">
                 <div className="row">
