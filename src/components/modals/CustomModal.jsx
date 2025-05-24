@@ -29,7 +29,7 @@ const CustomModal = ({ modal, setModal, title, children, className = "" }) => {
       className={className}
     >
       <div className="modal-top flex-between">
-        <h5 className="title">{title}</h5>
+        <h5 className="title">{title}</h5> 
         <button
           className="close-modal-btn btn flex-center"
           onClick={() => setModal({ ...modal, isOpen: false })}

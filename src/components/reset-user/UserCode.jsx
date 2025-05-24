@@ -14,6 +14,8 @@ export default function UserCode({
   phoneNumber,
   setUserName,
   UserNameResetShow,
+  buttonText = "북구된 ID 보기",
+  buttonText2 = "내 ID 확인",
 }) {
   const [isUploading, setIsUploading] = useState(false);
 
@@ -88,7 +90,7 @@ export default function UserCode({
     <div className="kakao-content">
       <div className="content-body">
         <div className="form-your-id">
-          <h2>회원님의 아이디는</h2>
+          {/* <h2>회원님의 아이디는  </h2>  */}
           <div className="form-fields">
             <input
               className="field"
@@ -97,17 +99,18 @@ export default function UserCode({
               {...register("code")}
             />
           </div>
-          <h2>입니다.</h2>
+          {/* <h2>입니다.</h2> */}
         </div>
 
         <div className="helper-buttons flex-between">
           <button className="reset-btn" onClick={handleSubmit(onSubmit)}>
             {/* 비밀번호 재설정 */}
-            내 ID 확인
+            
+            {buttonText2}
           </button>
 
           <button className="btn" onClick={handleSubmit(onSubmitUserName)}>
-            북구된 ID 보기
+            {buttonText}
           </button>
         </div>
       </div>

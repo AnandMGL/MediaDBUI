@@ -155,6 +155,8 @@ export default function SectionOne({ setSection }) {
             phoneNumber={phoneNumber}
             setUserName={setUserName}
             UserNameResetShow={UserNameResetShow}
+            buttonText={modalTitle === 1 ? "북구된 ID 보기" : "비밀번호 재설정"}
+            // buttonText2={modalTitle === 1 ? "아이디 찾기" : "비밀번호 재설정"}
           />
         </CustomModal>
       )}
