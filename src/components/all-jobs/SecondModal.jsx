@@ -5,9 +5,10 @@ export default function SecondModal({
   setSecondModal,
   applyToJob,
   openFirstModal,
+  managerMail
 }) {
   const [selectedResume, setSelectedResume] = useState(1);
-
+  
   const handleResumeClick = () => {
     setSelectedResume(selectedResume === 1 ? 0 : 1);
   };
@@ -39,7 +40,7 @@ export default function SecondModal({
           <p>* 반환청구기간 : 최종합격자 발표일 이후 30일 이내</p>
           <p>
             * 반환청구방법 : ‘채용서류 반환청구서’ 양식(홈페이지 공지사항 양식
-            첨부)을 작성하여 wjpark@crikorea.com으로 신청하고,
+            첨부)을 작성하여  <span> {managerMail} </span>    으로 신청하고,
           </p>
           <p>
             접수 후 14일 이내 특수취급우편물로 발송 또는 방문수령 가능 (단,

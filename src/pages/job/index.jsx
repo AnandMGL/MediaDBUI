@@ -78,9 +78,9 @@ export default function Job() {
                 "GET",
                 null
             ).then((res) => {
+                console.log(res, "job data =======>>>>");
                 if (res.statusCode === 200) {
                     setJobData(res.data);
-                    console.log("res  ----------------> ", JSON.stringify(res.data.always));
                 }
             });
         } catch (error) {
@@ -539,6 +539,7 @@ export default function Job() {
                                 setSecondModal={setSecondModal}
                                 applyToJob={applyToJob}
                                 openFirstModal={openFirstModal}
+                                managerMail={jobData?.managerEmail}
                             />
                         </CustomSecondModal>
                     )}
