@@ -29,7 +29,7 @@ export default function RecruitmentCard({ content }) {
             <button className="back-type btn">무관</button>
           )}
           <span className="notice-dedline">
-            {formatDate(content.noticeDedline)}
+            {formatDate(content.periodTo)}
           </span>
         </div>
       </div>
