@@ -42,6 +42,12 @@ export default function SectionThree() {
       insuranceDate: "",
     },
   });
+  const [editableUser, setEditableUser] = useState({
+  name: user.name,
+  email: user.email,
+  phoneNumber: user.phoneNumber,
+});
+
 
   useEffect(() => {
     getApplicantList();
@@ -72,7 +78,7 @@ export default function SectionThree() {
 
   const onSubmit = async (values) => {
     let checkField = true;
-
+    console.log('hello world -> ');
     for (const property in values) {
       if (property === "insuranceDate") {
         continue;
@@ -86,6 +92,8 @@ export default function SectionThree() {
 
     const data = {
       userId: user.id,
+      email: editableUser.email,
+      phoneNumber: editableUser.phoneNumber,
       type: values.type,
       purposeOfUsage: values.purposeOfUsage,
       insuranceDate: values.insuranceDate,
@@ -227,8 +235,10 @@ export default function SectionThree() {
                     // disabled
                     className="field"
                     placeholder="hong123@gmail.com"
-                    // {...register("email")}
-                    value={user.email}
+                     value={editableUser.email}
+                  onChange={(e) =>
+                    setEditableUser({ ...editableUser, email: e.target.value })
+                  }
                   />
                 </div>
                 <div className="field-box flex-center">
@@ -237,8 +247,10 @@ export default function SectionThree() {
                     // disabled
                     className="field"
                     placeholder="010-2233-4455"
-                    // {...register("phone")}
-                    value={user.phoneNumber}
+                    value={editableUser.phoneNumber}
+                    onChange={(e) =>
+                      setEditableUser({ ...editableUser, phoneNumber: e.target.value })
+                    }
                   />
                 </div>
                 <div className="field-box flex-center">
