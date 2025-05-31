@@ -29,6 +29,7 @@ export default function SectionOne() {
   const [image, setImage] = useState();
   const [imageUrl, setImageUrl] = useState();
   const [koPhoneNumber, setKoPhoneNumber] = useState("");
+  const [postalCode, setPostalCode] = useState("");
 
   const formatKoreanPhoneNumber = (phoneNumber) => {
     if (!phoneNumber) return ""; // Return empty string if phone number is not provided
@@ -79,6 +80,9 @@ export default function SectionOne() {
     if (address) {
       setValue("address", `${data.sido} ${data.sigungu} ${data.roadname} ${data.roadAddress.split(' ').slice(-1)[0]}`);
       // setValue("address", address[0].address.addressLine1);
+      console.log('postalCode: ', data);
+      
+      setPostalCode(data.zonecode);
     }
   };
 
@@ -114,7 +118,9 @@ export default function SectionOne() {
     });
     formData.append("phoneNumber", koPhoneNumber.replace(/-/g, ""));
     formData.append("file", image);
-
+    if(postalCode)
+      formData.append("postalCode", postalCode);
+    console.log('orlo- -----------------------> ', formData.get('postalCode'));
     try {
       await mainCallerFileWithToken("applicants/update", "POST", formData).then(
         (res) => {

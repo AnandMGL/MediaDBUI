@@ -23,6 +23,7 @@ export default function SectionOne() {
 
   const [showPassword, setShowPassword] = useState(false);
   const [hidePassword, setHidePassword] = useState(false);
+  const [postalCode, setPostalCode] = useState("");
 
   const newUserData = {
     id: user.id,
@@ -69,6 +70,7 @@ export default function SectionOne() {
     const address = await getCoordinatesByAddress(data.addressEnglish);
     if (address) {
       setValue("address", `${data.sido} ${data.sigungu} ${data.roadname} ${data.roadAddress.split(' ').slice(-1)[0]}`);
+      setPostalCode(data.zonecode);
     }
   };
 
@@ -89,6 +91,8 @@ export default function SectionOne() {
       formData.append(key, values[key]);
     });
     formData.append("file", image);
+    if(postalCode)
+      formData.append("postalCode", postalCode);
 
     try {
       await mainCallerFileWithToken("applicants/update", "POST", formData).then(

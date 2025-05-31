@@ -40,6 +40,7 @@ export default function KakaoSignUp() {
 
   const [showPassword, setShowPassword] = useState(false);
   const [hidePassword, setHidePassword] = useState(false);
+  const [postalCode, setPostalCode] = useState("");
 
   const handleTogglePassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -97,6 +98,7 @@ export default function KakaoSignUp() {
     const address = await getCoordinatesByAddress(data.addressEnglish);
     if (address) {
       setValue("address", `${data.sido} ${data.sigungu} ${data.roadname} ${data.roadAddress.split(' ').slice(-1)[0]}`);
+      setPostalCode(data.zonecode);
     }
   };
   const handleClick = () => {
@@ -146,6 +148,7 @@ export default function KakaoSignUp() {
       // password: kakaoEmail,
       email: kakaoEmail,
       kakaoId: kakaoUserName,
+      postalCode: postalCode,
     };
 
     try {

@@ -41,6 +41,7 @@ export default function PassSignUp({ setSection }) {
   const [enCodeData, setEnCodeData] = useState();
   const [loader, setLoader] = useState(false);
   const [koPhoneNumber, setKoPhoneNumber] = useState("");
+  const {postalCode, setPostalCode} = useState("");
 
   const handleTogglePassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -80,6 +81,7 @@ export default function PassSignUp({ setSection }) {
     const address = await getCoordinatesByAddress(data.addressEnglish);
     if (address) {
       setValue("address", `${data.sido} ${data.sigungu} ${data.roadname} ${data.roadAddress.split(' ').slice(-1)[0]}`);
+      setPostalCode(data.zonecode);
     }
   };
   const handleClick = () => {
@@ -132,6 +134,7 @@ export default function PassSignUp({ setSection }) {
       gender: enCodeData?.gender,
       birthday: encDate,
       phoneNumber: koPhoneNumber.replace(/-/g, ""),
+      postalCode: postalCode,
     };
     try {
       const res = await createUser(userData);

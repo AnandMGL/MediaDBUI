@@ -35,6 +35,8 @@ export default function SectionFour({ setSection }) {
 
   const [showPassword, setShowPassword] = useState(false);
   const [hidePassword, setHidePassword] = useState(false);
+    const {postalCode, setPostalCode} = useState("");
+
 
   const handleTogglePassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -64,6 +66,7 @@ export default function SectionFour({ setSection }) {
     const address = await getCoordinatesByAddress(data.addressEnglish);
     if (address) {
       setValue("address", `${data.sido} ${data.sigungu} ${data.roadname} ${data.roadAddress.split(' ').slice(-1)[0]}`);
+      setPostalCode(data.zonecode);
     }
   };
   const handleClick = () => {
@@ -101,6 +104,7 @@ export default function SectionFour({ setSection }) {
       profilePicture: "image",
       file: image,
       birthday: dateConverter(values.birthday),
+      postalCode : postalCode,
     };
     try {
       const res = await createUser(userData);
