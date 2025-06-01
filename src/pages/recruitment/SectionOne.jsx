@@ -15,6 +15,7 @@ import dayjs from "dayjs";
 export default function SectionOne({ user }) {
   const [list, setList] = useState();
   const [modal, setModal] = useState({ isOpen: false });
+  const [certificate, setCertificate] = useState();
 
   const certificateModalShow = () => {
     setModal({ isOpen: true });
@@ -63,6 +64,53 @@ export default function SectionOne({ user }) {
     }
   };
 
+  
+  const getCareerStageById = async (item) => {
+    console.log('item ===> ', item);
+    try {
+      await mainCallerToken(
+        `careerStage/getById/${item.employeeId}`,
+        "GET",
+        null
+      ).then((res) => {
+        if (res.statusCode === 200) {
+          const careerData = res.data;
+           const combinedCertificate = {
+            // item-оос авсан мэдээлэл
+            id: item.id,
+            name: item.name,
+            title: item.title,
+            customerName: item.customerName,
+            applicationDate: item.createdDate,
+            situation: item.situation,
+            status: item.status,
+
+            // careerStage API-с авсан мэдээлэл
+            phoneNumber: careerData.phoneNumber,
+            address: careerData.address,
+            email: careerData.email,
+            registration: careerData.registration,
+            joiningDate: careerData.joiningDate,
+            birthDate: careerData.birthDate,
+            dateFrom: careerData.dateFrom,
+            dateUntil: careerData.dateUntil,
+            detailedTasks: careerData.detailedTasks,
+            department: careerData.department?.name,
+            occupation: careerData.occupation?.name,
+            dispatchCode: careerData.dispatchCode?.name,
+            manager: careerData.manager?.name,
+          };
+
+          setCertificate(combinedCertificate);
+        } else {
+          toast.warning(res.message);
+        }
+      });
+    } catch (error) {
+      toast.error(error.response?.data.message);
+    }
+  };
+
   // const onClickJobDetail = (id) => {
   //   console.log(id);
   //   if (id) {
@@ -80,14 +128,16 @@ export default function SectionOne({ user }) {
           className="certificate"
           title="Certificate"
         >
+          {certificate ? 
           <PDFViewer style={{ width: "100%", height: "80vh" }}>
-            <ContentOfPdf />
+            <ContentOfPdf data={certificate}/>
           </PDFViewer>
+          : <div className="text-center">Loading...</div>}
         </CustomModal>
       )}
       <div className="page-content-one">
         <div className="status-list">
-          <h5 className="title">지원 현황</h5>
+          <h5 className="title">지원 현황 HELLO</h5>
           <table>
             <thead>
               <tr>
@@ -132,7 +182,7 @@ export default function SectionOne({ user }) {
                       <Link to="#">{item.attachment}</Link>
                     </td>
                     <td>{statusSwitcher(item.status) }</td>
-                    <td onClick={() => certificateModalShow()}>
+                    <td onClick={() => {getCareerStageById(item); certificateModalShow()}}>
                       <Link to="#">저장</Link>
                     </td>
                   </tr>

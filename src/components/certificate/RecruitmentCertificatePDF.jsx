@@ -32,7 +32,7 @@ export const ContentOfPdf = ({ data }) => {
     "월 " +
     ("0" + currentDate.getDate()).slice(-2) +
     "일";
-
+  console.log('hello world- ----> ', JSON.stringify(data, null, 2));
   return (
     <Document>
       <Page>
@@ -58,7 +58,7 @@ export const ContentOfPdf = ({ data }) => {
                 fontSize: "32px",
                 color: "#2A2A2A",
                 fontFamily: "pretendard",
-                fontWeight: "bold",
+              
                 width: "100%",
               }}
             >
@@ -110,11 +110,11 @@ export const ContentOfPdf = ({ data }) => {
                       style={{
                         color: "#2A2A2A",
                         fontFamily: "pretendard",
-                        fontWeight: "bold",
+                      
                         textAlign: "left",
                       }}
                     >
-                      박 우 재
+                      {data.name || "홍길동"}
                     </Text>
                   </View>
                   <View style={{ flexDirection: "row", marginTop: "10px" }}>
@@ -138,11 +138,11 @@ export const ContentOfPdf = ({ data }) => {
                         color: "#2A2A2A",
                         textAlign: "left",
                         fontFamily: "pretendard",
-                        fontWeight: "bold",
+                      
                         fontSize: "14px",
                       }}
                     >
-                      1994.05.08
+                      {data.birthDate || "1990년 01월 01일"}
                     </Text>
                   </View>
                   <View style={{ flexDirection: "row", marginTop: "10px" }}>
@@ -164,12 +164,12 @@ export const ContentOfPdf = ({ data }) => {
                       style={{
                         color: "#2A2A2A",
                         fontFamily: "pretendard",
-                        fontWeight: "bold",
+                      
                         fontSize: "16px",
                         textAlign: "left",
                       }}
                     >
-                      [GS리테일홈쇼핑] 임원비서 모집
+                     {data.customerName || ""}
                     </Text>
                   </View>
                   <View style={{ flexDirection: "row", marginTop: "10px" }}>
@@ -192,11 +192,11 @@ export const ContentOfPdf = ({ data }) => {
                         color: "#2A2A2A",
                         fontFamily: "pretendard",
                         fontSize: "16px",
-                        fontWeight: "bold",
+                      
                         textAlign: "left",
                       }}
                     >
-                      비서
+                     {data.occupation || ""}
                     </Text>
                   </View>
                   <View style={{ flexDirection: "row", marginTop: "10px" }}>
@@ -218,12 +218,12 @@ export const ContentOfPdf = ({ data }) => {
                       style={{
                         color: "#2A2A2A",
                         fontFamily: "pretendard",
-                        fontWeight: "bold",
+                      
                         fontSize: "14px",
                         textAlign: "left",
                       }}
                     >
-                      2024년 1월 10일
+                      {data.applicationDate || ""}
                     </Text>
                   </View>
                   <View style={{ flexDirection: "row", marginTop: "10px" }}>
@@ -245,12 +245,12 @@ export const ContentOfPdf = ({ data }) => {
                       style={{
                         color: "#2A2A2A",
                         fontFamily: "pretendard",
-                        fontWeight: "bold",
+                      
                         fontSize: "16px",
                         textAlign: "left",
                       }}
                     >
-                      엔터테인먼트팀 문가혜 (02-2090-1528)
+                      {data.manager || ""}
                     </Text>
                   </View>
                 </View>
@@ -276,7 +276,7 @@ export const ContentOfPdf = ({ data }) => {
                 <Text
                   style={{
                     fontFamily: "pretendard",
-                    fontWeight: "bold",
+                  
                     fontSize: "12px",
                     textAlign: "center",
                     paddingTop: "36px",
@@ -293,7 +293,7 @@ export const ContentOfPdf = ({ data }) => {
                 <Text
                   style={{
                     fontFamily: "pretendard",
-                    fontWeight: "bold",
+                  
                     fontSize: "12px",
                     textAlign: "center",
                     paddingTop: "12px",
@@ -308,7 +308,7 @@ export const ContentOfPdf = ({ data }) => {
                       <Text
                         style={{
                           fontFamily: "pretendard",
-                          fontWeight: "bold",
+                        
                           fontSize: "12px",
                           textAlign: "center",
                           paddingRight: "24px",
@@ -319,7 +319,7 @@ export const ContentOfPdf = ({ data }) => {
                       <Text
                         style={{
                           fontFamily: "pretendard",
-                          fontWeight: "bold",
+                        
                           fontSize: "12px",
                           textAlign: "center",
                         }}
@@ -338,7 +338,7 @@ export const ContentOfPdf = ({ data }) => {
                       <Text
                         style={{
                           fontFamily: "pretendard",
-                          fontWeight: "bold",
+                        
                           fontSize: "12px",
                           textAlign: "center",
                           paddingRight: "24px",
@@ -349,7 +349,7 @@ export const ContentOfPdf = ({ data }) => {
                       <Text
                         style={{
                           fontFamily: "pretendard",
-                          fontWeight: "bold",
+                        
                           fontSize: "12px",
                           textAlign: "center",
                         }}
@@ -359,27 +359,19 @@ export const ContentOfPdf = ({ data }) => {
                     </View>
                   </View>
 
-                  <View
-                    style={{
-                      width: 60,
-                      height: 60,
-                      backgroundColor: "#FFE8E8",
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Text
+                
+                     <Image
                       style={{
-                        fontFamily: "pretendard",
-                        fontWeight: "bold",
-                        fontSize: "12px",
-                        textAlign: "center",
-                        color: "#BEBEBE",
+                        width: 60,
+                        // height: 60,
+                        marginLeft: "32px",
+                        marginRight: "48px",
+                        display: "flex",
+                        justifyContent: "center"
                       }}
-                    >
-                      직인영역
-                    </Text>
-                  </View>
+                      source="/assets/images/dojang_new.png"
+                    />
+                
                 </View>
               </View>
             </View>
