@@ -17,6 +17,8 @@ const customStyles = {
     boxShadow: "0px 10px 35px 0px rgba(0, 0, 0, 0.05)",
     borderRadius: "20px",
   },
+  
+  
 };
 
 const CustomModal = ({ modal, setModal, title, children, className = "" }) => {
@@ -38,7 +40,25 @@ const CustomModal = ({ modal, setModal, title, children, className = "" }) => {
         </button>
       </div>
       {children}
+
+      <style jsx>{`
+        table {
+          caption-side: bottom;
+          border-collapse: collapse;
+          border: 1px double #b3b3b3;
+          border-spacing: 0;
+          height: 100%;
+          width: 100%;
+        }
+          table td, .ck-content .table table th {
+            border: 1px solid #bfbfbf;
+            min-width: 2em;
+            padding: .4em;
+        }
+      `}</style>
     </Modal>
+
+    
   );
 };
 
