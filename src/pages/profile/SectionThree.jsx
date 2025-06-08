@@ -78,7 +78,6 @@ export default function SectionThree() {
 
   const onSubmit = async (values) => {
     let checkField = true;
-    console.log('hello world -> ');
     for (const property in values) {
       if (property === "insuranceDate") {
         continue;

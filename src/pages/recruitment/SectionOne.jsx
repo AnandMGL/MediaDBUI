@@ -66,13 +66,13 @@ export default function SectionOne({ user }) {
 
   
   const getCareerStageById = async (item) => {
-    console.log('item ===> ', item);
     try {
       await mainCallerToken(
         `careerStage/getById/${item.employeeId}`,
         "GET",
         null
       ).then((res) => {
+       
         if (res.statusCode === 200) {
           const careerData = res.data;
            const combinedCertificate = {
@@ -84,6 +84,7 @@ export default function SectionOne({ user }) {
             applicationDate: item.createdDate,
             situation: item.situation,
             status: item.status,
+            managerName: item.managerName,
 
             // careerStage API-с авсан мэдээлэл
             phoneNumber: careerData.phoneNumber,
@@ -91,14 +92,15 @@ export default function SectionOne({ user }) {
             email: careerData.email,
             registration: careerData.registration,
             joiningDate: careerData.joiningDate,
-            birthDate: careerData.birthDate,
+            birthDate: careerData.birthday,
             dateFrom: careerData.dateFrom,
             dateUntil: careerData.dateUntil,
             detailedTasks: careerData.detailedTasks,
             department: careerData.department?.name,
             occupation: careerData.occupation?.name,
-            dispatchCode: careerData.dispatchCode?.name,
-            manager: careerData.manager?.name,
+            dispatchCode: careerData.dispatchCode?.name
+            
+            
           };
 
           setCertificate(combinedCertificate);
@@ -137,7 +139,7 @@ export default function SectionOne({ user }) {
       )}
       <div className="page-content-one">
         <div className="status-list">
-          <h5 className="title">지원 현황 HELLO</h5>
+          <h5 className="title">지원 현황 </h5>
           <table>
             <thead>
               <tr>

@@ -32,7 +32,6 @@ export const ContentOfPdf = ({ data }) => {
     "월 " +
     ("0" + currentDate.getDate()).slice(-2) +
     "일";
-  console.log('hello world- ----> ', JSON.stringify(data, null, 2));
   return (
     <Document>
       <Page>
@@ -169,7 +168,7 @@ export const ContentOfPdf = ({ data }) => {
                         textAlign: "left",
                       }}
                     >
-                     {data.customerName || ""}
+                     {data.title || ""}
                     </Text>
                   </View>
                   <View style={{ flexDirection: "row", marginTop: "10px" }}>
@@ -250,7 +249,7 @@ export const ContentOfPdf = ({ data }) => {
                         textAlign: "left",
                       }}
                     >
-                      {data.manager || ""}
+                      {data.managerName || ""}
                     </Text>
                   </View>
                 </View>

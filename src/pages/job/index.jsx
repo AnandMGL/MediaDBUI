@@ -78,7 +78,7 @@ export default function Job() {
                 "GET",
                 null
             ).then((res) => {
-                console.log(res, "job data =======>>>>");
+              
                 if (res.statusCode === 200) {
                     setJobData(res.data);
                 }
@@ -106,7 +106,7 @@ export default function Job() {
     const applyToJob = async () => {
         let formData = new FormData();
 
-        formData.append("name", "KIM MAN");
+        formData.append("name", user?.name);
         formData.append("situation", "REQUESTED");
         formData.append("applicantId", user.id);
         formData.append("recruitmentId", jobData.id);
