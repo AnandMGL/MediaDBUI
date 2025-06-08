@@ -14,6 +14,8 @@ import { toast } from "react-toastify";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUserData } from "../../actions/user";
+import ReusablePopup from "../../components/popup/ReusablePopup";
+
 // import {
 //   Button,
 //   Dialog,
@@ -36,118 +38,154 @@ import { setUserData } from "../../actions/user";
 // }));
 
 export default function Home() {
-  const [searchParams] = useSearchParams();
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
+    const [searchParams] = useSearchParams();
+    const dispatch = useDispatch();
+    const user = useSelector((state) => state.user);
 
-  const [careerCategory, setCareerCategory] = useState();
-  const [calendarJobList, setCalendarJobList] = useState([]);
-  // const [open, setOpen] = React.useState(false);
+    const [careerCategory, setCareerCategory] = useState();
+    const [calendarJobList, setCalendarJobList] = useState([]);
 
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
+    const [showPopup, setShowPopup] = useState(false);
+    const [popupData, setPopupData] = useState(null);
 
-  useEffect(() => {
-    careerInsightsMenu();
-    getCalendarJobList && getCalendarJobList();
+    // const [open, setOpen] = React.useState(false);
 
-    if (searchParams.get("code") != null) {
-      callBack();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    // const handleClickOpen = () => {
+    //   setOpen(true);
+    // };
+    // const handleClose = () => {
+    //   setOpen(false);
+    // };
 
-  const callBack = async () => {
-    const code = searchParams.get("code");
+    useEffect(() => {
+        careerInsightsMenu();
+        getCalendarJobList && getCalendarJobList();
 
-    try {
-      const response = await mainCallerWithOutToken(
-        `home/login-callback/${code}`,
-        "GET",
-        null
-      );
-      if (response.statusCode === 200) {
-        dispatch(setUserData(response.data));
-      }
-    } catch (error) {
-      console.log("kakao login error:", error);
-    }
-  };
-
-  const getCalendarJobList = async () => {
-    try {
-      await mainCallerWithOutToken("home/calendarJobList", "GET", null).then(
-        (result) => {
-          if (result.statusCode === 200) {
-            setCalendarJobList(result.data.content);
-          }
+        if (searchParams.get("code") != null) {
+            callBack();
         }
-      );
-    } catch (error) {
-      toast.error(error.response?.data.message);
-    }
-  };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-  const careerInsightsMenu = async () => {
-    try {
-      await mainCallerWithOutToken("jobCategories", "GET", null, {
-        Authorization: `Bearer ${user.token}`,
-      }).then((result) => {
-        setCareerCategory(result.data);
-      });
-    } catch (error) {
-      toast.error(error.response?.data.message);
-    }
-  };
+    useEffect(() => {
+        const dismissedToday = localStorage.getItem("home_popup_dismissed");
+        const today = new Date().toDateString();
 
-  // useEffect(() => {
-  //   const today = new Date().getTime();
-  //   const popTimer = new Date("popupTimer").getTime();
+        if (dismissedToday === today) return;
+        getPopupData();
+    }, []);
 
-  //   if (popTimer) {
-  //     if (today > popTimer) {
-  //       setTimeout(() => {
-  //         setOpen(true);
-  //       }, 1000);
-  //     }
-  //   } else {
-  //     setTimeout(() => {
-  //       setOpen(true);
-  //     }, 1000);
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+    const getPopupData = async () => {
+        try {
+            const response = await mainCallerWithOutToken(
+                "home/popup",
+                "GET",
+                null
+            );
+            console.log("pop res =", JSON.stringify(response));
+            if (response.statusCodeValue === 200) {
+                console.log("response.body =", JSON.stringify(response.body));
+                setPopupData(response.body);
+                setShowPopup(true);
+            }
+        } catch (error) {
+            console.error("Error fetching popup data:", error);
+        }
+    };
 
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
+    const closePopup = () => {
+        setShowPopup(false);
+    };
 
-  return (
-    <div className="home-page">
-      <div className="container">
-        <Gallery />
+    const callBack = async () => {
+        const code = searchParams.get("code");
 
-        {/* <div>
+        try {
+            const response = await mainCallerWithOutToken(
+                `home/login-callback/${code}`,
+                "GET",
+                null
+            );
+            if (response.statusCode === 200) {
+                dispatch(setUserData(response.data));
+            }
+        } catch (error) {
+            console.log("kakao login error:", error);
+        }
+    };
+
+    const getCalendarJobList = async () => {
+        try {
+            await mainCallerWithOutToken(
+                "home/calendarJobList",
+                "GET",
+                null
+            ).then((result) => {
+                if (result.statusCode === 200) {
+                    setCalendarJobList(result.data.content);
+                }
+            });
+        } catch (error) {
+            toast.error(error.response?.data.message);
+        }
+    };
+
+    const careerInsightsMenu = async () => {
+        try {
+            await mainCallerWithOutToken("jobCategories", "GET", null, {
+                Authorization: `Bearer ${user.token}`,
+            }).then((result) => {
+                setCareerCategory(result.data);
+            });
+        } catch (error) {
+            toast.error(error.response?.data.message);
+        }
+    };
+
+    // useEffect(() => {
+    //   const today = new Date().getTime();
+    //   const popTimer = new Date("popupTimer").getTime();
+
+    //   if (popTimer) {
+    //     if (today > popTimer) {
+    //       setTimeout(() => {
+    //         setOpen(true);
+    //       }, 1000);
+    //     }
+    //   } else {
+    //     setTimeout(() => {
+    //       setOpen(true);
+    //     }, 1000);
+    //   }
+    //   // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, []);
+
+    // const handleClose = () => {
+    //   setOpen(false);
+    // };
+
+    return (
+        <div className="home-page">
+            <div className="container">
+                <Gallery />
+
+                {/* <div>
           <Search />
         </div> */}
 
-        <SpecialRecruitment />
-        <CareerInsights careerCategory={careerCategory} />
-      </div>
-      <div className="container-fluid">
-        <div className="container" id="search">
-          <AllJobs calendarJobList={calendarJobList} />
-        </div>
-      </div>
-      <EasyActions>
-        <LinkButtons />
-      </EasyActions>
+                <SpecialRecruitment />
+                <CareerInsights careerCategory={careerCategory} />
+            </div>
+            <div className="container-fluid">
+                <div className="container" id="search">
+                    <AllJobs calendarJobList={calendarJobList} />
+                </div>
+            </div>
+            <EasyActions>
+                <LinkButtons />
+            </EasyActions>
 
-      {/* <React.Fragment>
+            {/* <React.Fragment>
         <BootstrapDialog
           onClose={handleClose}
           aria-labelledby="customized-dialog-title"
@@ -180,6 +218,28 @@ export default function Home() {
           </DialogActions>
         </BootstrapDialog>
       </React.Fragment> */}
-    </div>
-  );
+
+            {showPopup && popupData && (
+                <ReusablePopup
+                    title={popupData.title}
+                    content={
+                        <img
+                            src={`https://creeknriver-mediadbglobaldev.s3.ap-northeast-2.amazonaws.com/${popupData.imagePath}`}
+                            alt="Popup"
+                            width={popupData.imageWidth || 300}
+                            style={{
+                                display: "block",
+                                maxWidth: "100%",
+                                height: "auto",
+                            }}
+                            onClick={() =>
+                                window.open(popupData.landingUrl, "_blank")
+                            }
+                        />
+                    }
+                    onClose={closePopup}
+                />
+            )}
+        </div>
+    );
 }
