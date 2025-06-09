@@ -78,7 +78,7 @@ export default function UserCode({
           toast.success(res.body.message);
           setIsUploading(false);
           setUserName(res.body?.data);
-          UserNameResetShow();
+          UserResetPasswordShow();
         }
       } catch (error) {
         toast.warning(error.response?.data.message);
@@ -103,13 +103,7 @@ export default function UserCode({
           {/* <h2>입니다.</h2> */}
         </div>
 
-        <div className="helper-buttons flex-between">
-          <button className="reset-btn" onClick={handleSubmit(onSubmit)}>
-            {/* 비밀번호 재설정 */}
-            
-            {buttonText2}
-          </button>
-
+        <div className="helper-buttons flex-center">
           <button className="btn" onClick={handleSubmit(onSubmitUserName)}>
             {buttonText}
           </button>
