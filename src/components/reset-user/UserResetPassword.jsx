@@ -102,7 +102,7 @@ export default function UserResetPassword({ userName, setResetPassword }) {
                 {...register("confirmPassword", {
                   required: true,
                   validate: (value) =>
-                    value === password || "The passwords do not match",
+                    value === password || "비밀번호가 서로 일치하지 않아요",
                 })}
               />
               <div

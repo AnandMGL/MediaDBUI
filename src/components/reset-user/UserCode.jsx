@@ -14,6 +14,7 @@ export default function UserCode({
   phoneNumber,
   setUserName,
   UserNameResetShow,
+  UserResetPasswordShow,
   buttonText = "북구된 ID 보기",
   buttonText2 = "내 ID 확인",
 }) {
