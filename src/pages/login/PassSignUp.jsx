@@ -41,7 +41,7 @@ export default function PassSignUp({ setSection }) {
   const [enCodeData, setEnCodeData] = useState();
   const [loader, setLoader] = useState(false);
   const [koPhoneNumber, setKoPhoneNumber] = useState("");
-  const {postalCode, setPostalCode} = useState("");
+  const [postalCode, setPostalCode] = useState("");
 
   const handleTogglePassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -80,7 +80,7 @@ export default function PassSignUp({ setSection }) {
   const handleComplete = async (data) => {
     const address = await getCoordinatesByAddress(data.addressEnglish);
     if (address) {
-      setValue("address", `${data.sido} ${data.sigungu} ${data.roadname} ${data.roadAddress.split(' ').slice(-1)[0]}`);
+      setValue("address", `${data.roadAddress} ${data.buildingName ? `(${data.buildingName})` : ""}`);
       setPostalCode(data.zonecode);
     }
   };
@@ -113,11 +113,7 @@ export default function PassSignUp({ setSection }) {
 
   const onSubmit = async (values) => {
 
-    if (!image) {
-      setIsError(true);
-      setErrorMsg("이미지를 선택해 주세요."); 
-      return;
-    }
+ 
 
     if (isError) return;
     setErrorMsg("");
