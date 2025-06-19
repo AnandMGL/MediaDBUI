@@ -75,6 +75,8 @@ export default function SectionOne({ user }) {
        
         if (res.statusCode === 200) {
           const careerData = res.data;
+          console.log('res.data 11 =======> ', JSON.stringify(careerData));
+          console.log('item 11 =======> ', JSON.stringify(item));
            const combinedCertificate = {
             // item-оос авсан мэдээлэл
             id: item.id,
@@ -97,7 +99,7 @@ export default function SectionOne({ user }) {
             dateUntil: careerData.dateUntil,
             detailedTasks: careerData.detailedTasks,
             department: careerData.department?.name,
-            occupation: careerData.occupation?.name,
+            occupation: item.occupationName,
             dispatchCode: careerData.dispatchCode?.name
             
             

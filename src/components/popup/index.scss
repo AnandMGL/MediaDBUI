@@ -66,3 +66,38 @@
         justify-content: center;
     }
 }
+
+.popup-body {
+    position: relative;
+}
+
+.image-slider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.prev-btn, .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.prev-btn {
+    left: 0;
+}
+
+.next-btn {
+    right: 0;
+}
+
+.image-slider img {
+    max-width: 100%;
+    height: auto;
+}

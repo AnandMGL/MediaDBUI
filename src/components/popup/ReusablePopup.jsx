@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import "./index.scss";
 
-const ReusablePopup = ({ title, content, onClose }) => {
+// Reusable Popup Component
+const ReusablePopup = ({ popupData, onClose }) => {
+    const [currentPopupIndex, setCurrentPopupIndex] = useState(0);
     const [doNotShow, setDoNotShow] = useState(false);
 
+    const { title, imagePath , landingUrl, isToNewWindow} = popupData[currentPopupIndex]; // Get the current popup data (title and image path)
+
     const handleClose = () => {
-        console.log('doNotShow ==>', doNotShow);
         if (doNotShow === true) {
             const today = new Date().toDateString();
             localStorage.setItem("home_popup_dismissed", today);
@@ -13,12 +16,54 @@ const ReusablePopup = ({ title, content, onClose }) => {
         onClose();
     };
 
+    const nextPopup = () => {
+        setCurrentPopupIndex((prevIndex) =>
+            prevIndex === popupData.length - 1 ? 0 : prevIndex + 1
+        );
+    };
+
+    const prevPopup = () => {
+        setCurrentPopupIndex((prevIndex) =>
+            prevIndex === 0 ? popupData.length - 1 : prevIndex - 1
+        );
+    };
+
+      const handleImageClick = () => {
+        if(isToNewWindow)
+            window.open(landingUrl, "_blank"); // Open the landing URL in a new tab
+        else 
+            window.location.href = landingUrl; // Navigate to the landing URL in the same tab
+    };
+
     return (
         <div className="popup-box">
             <div className="popup-body">
-                <button className="close-btn" onClick={handleClose}>×</button>
+                <button className="close-btn" onClick={handleClose}>
+                    ×
+                </button>
                 <p className="popup-title">{title}</p>
-                <div className="popup-content">{content}</div>
+                <div className="popup-content">
+                    {/* Image Slider */}
+                    <div className="image-slider">
+                        <button className="prev-btn" onClick={prevPopup}>
+                            ←
+                        </button>
+                        <img
+                            src={`https://creeknriver-mediadbglobaldev.s3.ap-northeast-2.amazonaws.com/${imagePath}`}
+                            alt="Popup"
+                            width={300}
+                            style={{
+                                display: "block",
+                                maxWidth: "100%",
+                                height: "auto",
+                            }}
+                            onClick={handleImageClick} 
+                        />
+                        <button className="next-btn" onClick={nextPopup}>
+                            →
+                        </button>
+                    </div>
+                </div>
                 <div>
                     <label className="dismiss-checkbox">
                         <input
@@ -34,4 +79,22 @@ const ReusablePopup = ({ title, content, onClose }) => {
     );
 };
 
-export default ReusablePopup;
+// Popup List Component
+const PopupList = ({ popupDataList }) => {
+    const [showPopup, setShowPopup] = useState(true);
+
+    const closePopup = () => setShowPopup(false);
+
+    return (
+        <div>
+            {showPopup && popupDataList && popupDataList.length > 0 && (
+                <ReusablePopup
+                    popupData={popupDataList} // Pass the full list of popup data
+                    onClose={closePopup}
+                />
+            )}
+        </div>
+    );
+};
+
+export default PopupList;

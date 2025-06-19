@@ -15,6 +15,7 @@ import { useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUserData } from "../../actions/user";
 import ReusablePopup from "../../components/popup/ReusablePopup";
+import PopupList from "../../components/popup/ReusablePopup";
 
 // import {
 //   Button,
@@ -220,25 +221,27 @@ export default function Home() {
       </React.Fragment> */}
 
             {showPopup && popupData && (
-                <ReusablePopup
-                    title={popupData.title}
-                    content={
-                        <img
-                            src={`https://creeknriver-mediadbglobaldev.s3.ap-northeast-2.amazonaws.com/${popupData.imagePath}`}
-                            alt="Popup"
-                            width={popupData.imageWidth || 300}
-                            style={{
-                                display: "block",
-                                maxWidth: "100%",
-                                height: "auto",
-                            }}
-                            onClick={() =>
-                                window.open(popupData.landingUrl, "_blank")
-                            }
-                        />
-                    }
-                    onClose={closePopup}
-                />
+                // <ReusablePopup
+                //     title={popupData.title}
+                //     content={
+                //         <img
+                //             src={`https://creeknriver-mediadbglobaldev.s3.ap-northeast-2.amazonaws.com/${popupData.imagePath}`}
+                //             alt="Popup"
+                //             width={popupData.imageWidth || 300}
+                //             style={{
+                //                 display: "block",
+                //                 maxWidth: "100%",
+                //                 height: "auto",
+                //             }}
+                //             onClick={() =>
+                //                 window.open(popupData.landingUrl, "_blank")
+                //             }
+                //         />
+                //     }
+                //     onClose={closePopup}
+                // />
+                <PopupList popupDataList={popupData} />
+
             )}
         </div>
     );
