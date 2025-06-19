@@ -15,8 +15,7 @@ export default function UserCode({
   setUserName,
   UserNameResetShow,
   UserResetPasswordShow,
-  buttonText = "북구된 ID 보기",
-  buttonText2 = "내 ID 확인",
+  buttonText 
 }) {
   const [isUploading, setIsUploading] = useState(false);
 
@@ -78,7 +77,12 @@ export default function UserCode({
           toast.success(res.body.message);
           setIsUploading(false);
           setUserName(res.body?.data);
-          UserResetPasswordShow();
+          if(buttonText == '북구된 ID 보기'){
+              UserNameResetShow();
+          }else{
+              UserResetPasswordShow();
+          }
+          
         }
       } catch (error) {
         toast.warning(error.response?.data.message);

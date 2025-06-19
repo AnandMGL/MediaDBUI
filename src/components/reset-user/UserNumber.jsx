@@ -9,7 +9,7 @@ const checkNumber = {
   phoneNumber: "전화 번호를 입력해 주세요",
 };
 
-export default function UserNumber({ UserNumberModalShow, setPhoneNumber }) {
+export default function UserNumber({ UserNumberModalShow, setPhoneNumber, buttonText }) {
   const [isUploading, setIsUploading] = useState(false);
 
   const { register, handleSubmit } = useForm();
@@ -69,7 +69,7 @@ export default function UserNumber({ UserNumberModalShow, setPhoneNumber }) {
             </Button>
           ) : (
             <button className="btn" onClick={handleSubmit(onSubmit)}>
-              내 ID 확인
+              {buttonText}
             </button>
           )}
         </div>

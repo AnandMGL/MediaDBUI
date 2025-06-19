@@ -31,12 +31,12 @@ export default function SectionOne({ setSection }) {
 
   const { register, handleSubmit } = useForm();
 
-  const userNumberShow = () => {
+  const findIdShow = () => {
     setUserNumber({ isOpen: true });
     setModalTitle(1);
   };
 
-  const userNameShow = () => {
+  const findPasswordShow = () => {
     setUserNumber({ isOpen: true });
     setModalTitle(2);
   };
@@ -122,10 +122,10 @@ export default function SectionOne({ setSection }) {
           회원가입
         </button>
         <div className="forgot-buttons">
-          <button className="find" onClick={userNumberShow}>
+          <button className="find" onClick={findIdShow}>
             아이디 찾기
           </button>
-          <button className="find" onClick={userNameShow}>
+          <button className="find" onClick={findPasswordShow}>
             비밀번호 찾기
           </button>
         </div>
@@ -140,6 +140,7 @@ export default function SectionOne({ setSection }) {
           <UserNumber
             UserNumberModalShow={UserNumberModalShow}
             setPhoneNumber={setPhoneNumber}
+            buttonText={modalTitle === 1 ? "내 ID 확인" : "비밀번호 재설정"}
           />
         </CustomModal>
       )}
@@ -179,7 +180,7 @@ export default function SectionOne({ setSection }) {
         <CustomModal
           modal={{ isOpen: userNameReset.isOpen }}
           setModal={setUserNameReset}
-          title="비밀번호 찾기"
+          title="아이디 찾기"
         >
           <UserNameResetModal userName={userName} />
         </CustomModal>
