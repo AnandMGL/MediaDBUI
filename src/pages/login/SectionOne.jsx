@@ -76,7 +76,7 @@ export default function SectionOne({ setSection }) {
             }
           })
           .catch((error) => {
-            toast.warning(error.message);
+            toast.warning('아이디 또는 비밀번호가 잘못되었습니다.');
           });
       } catch (error) {
         toast.error(error.response?.data.message);

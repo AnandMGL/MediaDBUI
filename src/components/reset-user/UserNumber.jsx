@@ -57,7 +57,7 @@ export default function UserNumber({ UserNumberModalShow, setPhoneNumber, button
               className="field"
               type="text"
               inputMode="numeric"
-              placeholder="전화 번호를 입력해 주세요"
+              placeholder='하이픈(-) 없이 전화번호를 입력해 주세요.'
               {...register("phoneNumber")}
             />
           </div>
