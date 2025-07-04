@@ -661,7 +661,7 @@ export default function SectionFiveUpdate({
                 <p className="label">취업 경력</p>
               </div>
               <div className="col-md-2 d-flex">
-                <label htmlFor="exist">
+                <label htmlFor="exist" className="font13">
                   <input
                     name="myRadio"
                     id="exist"
@@ -672,7 +672,7 @@ export default function SectionFiveUpdate({
                   />
                   있음
                 </label>
-                <label htmlFor="noExist">
+                <label htmlFor="noExist" className="font13">
                   <input
                     name="myRadio"
                     id="noExist"

@@ -245,7 +245,7 @@ export const gender = [
 ];
 
 export const years = () => {
-  const startYear = 2024;
+  const startYear = new Date().getFullYear();;
   const endYear = 1930;
   const years = Array.from(
     { length: startYear - endYear + 1 },
