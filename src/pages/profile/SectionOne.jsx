@@ -112,7 +112,6 @@ export default function SectionOne() {
 
   const onSubmit = async (values) => {
     const formData = new FormData();
-
     Object.keys(values).forEach((key) => {
       formData.append(key, values[key]);
     });
@@ -120,7 +119,6 @@ export default function SectionOne() {
     formData.append("file", image);
     if(postalCode)
       formData.append("postalCode", postalCode);
-    console.log('orlo- -----------------------> ', formData.get('postalCode'));
     try {
       await mainCallerFileWithToken("applicants/update", "POST", formData).then(
         (res) => {
@@ -331,7 +329,6 @@ export default function SectionOne() {
                         placeholder="내용을 입력하여 주세요"
                         type={hidePassword ? "text" : "password"}
                         {...register("verifyPassword", {
-                          required: true,
                           validate: (value) =>
                             value === password || "The passwords do not match",
                         })}
