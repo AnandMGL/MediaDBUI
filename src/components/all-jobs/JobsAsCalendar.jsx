@@ -82,8 +82,8 @@ export default function JobsAsCalendar({ jobs, calendarJobList }) {
         editable={false}
         selectable={true}
         timeZone={false}
-        locale="en"
-        firstDay={1}
+        locale="ko"
+        firstDay={7}
         dayMaxEvents={5}
         dateClick={handleClick}
         dayCellClassNames={dayCellClassNames}
