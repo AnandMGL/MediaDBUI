@@ -393,7 +393,7 @@ export default function SectionFiveUpdate({
                 </div>
               </div>
               <div className="col-md-6 first">
-                <p className="label top">경력 기간</p>
+                <p className="label top">재학 기간</p>
               </div>
               <div className="col-md-1">
                 <p className="label top">학교명</p>
