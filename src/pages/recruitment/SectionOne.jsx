@@ -176,7 +176,7 @@ export default function SectionOne({ user }) {
                     <td>{dayjs(item.createdDate).format("YYYY.MM.DD")}</td>
                     <td>{item.customerName}</td>
                     <td className="d-inline-block text-truncate cursor-pointer">
-                      <Link to={`/job/${item.id}`}>{item.title}</Link>
+                      <Link to={`/job/${item.recruitmentId}`}>{item.title}</Link>
                     </td>
                     <td>{item.situation === "ACTIVE" ? "진행중" : "마감"}</td>
                     <td
