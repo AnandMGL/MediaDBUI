@@ -30,7 +30,6 @@ export default function SectionTwo({ setSection }) {
   const [all, setAll] = useState(false);
   const [modal, setModal] = useState({ isOpen: false });
   const [modalTerm, setModalTerm] = useState({ isOpen: false });
-  const [encData, setEncData] = useState();
   const [termsTitle, setTermsTitle] = useState("");
   const [termsContent, setTermsContent] = useState("");
   const [termsAndCondition, setTermsAndCondition] = useState([]);
@@ -93,40 +92,13 @@ export default function SectionTwo({ setSection }) {
 
   const handlePass = async () => {
     try {
-      await mainCallerWithOutToken("checkMain", "GET", null).then((res) => {
-        if (res.statusCode === 200) {
-          setEncData(res.data);
-        } else {
-          navigate("/error");
-        }
-      });
+     navigate("/pass-sign-up");
     } catch (error) {
       toast.error(error.response?.data.message);
     }
   };
 
-  function fnPopup() {
-    window.open(
-      "",
-      "popupChk",
-      "width=500, height=550, top=100, left=50, fullscreen=no, menubar=no, status=no, toolbar=no, titlebar=yes, location=no, scrollbar=no"
-    );
-    document.form_chk.action =
-      "https://nice.checkplus.co.kr/CheckPlusSafeModel/checkplus.cb";
-    document.form_chk.target = "popupChk";
-    document.form_chk.submit();
 
-    navigate("/pass-sign-up");
-    // setSection(3);
-  }
-
-  useEffect(() => {
-    if (encData) {
-      fnPopup();
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [encData]);
 
   const handleCheckAll = (checked) => {
   setAll(checked);
@@ -138,10 +110,7 @@ export default function SectionTwo({ setSection }) {
 };
   return (
     <div className="page-content-two flex-center">
-      <form name="form_chk" method="post">
-        <input type="hidden" name="m" value="checkplusService" />
-        <input type="hidden" name="EncodeData" value={encData} />
-      </form>
+
       <h3 className="title">회원가입</h3>
       <h5 className="terms">이용약관 및 개인 정보 취급 동의</h5>
       <div className="form-fields">

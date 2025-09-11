@@ -23,6 +23,7 @@ import { getCoordinatesByAddress } from "../../api/nominatium";
 import { useDaumPostcodePopup } from "react-daum-postcode";
 import { toast } from "react-toastify";
 import { Box, CircularProgress, Typography } from "@mui/material";
+import { mainCallerWithOutToken, getTermsAndCondition } from "../../api/mainCaller";
 import Footer from "../../components/footer";
 
 export default function PassSignUp({ setSection }) {
@@ -42,6 +43,7 @@ export default function PassSignUp({ setSection }) {
   const [loader, setLoader] = useState(false);
   const [koPhoneNumber, setKoPhoneNumber] = useState("");
   const [postalCode, setPostalCode] = useState("");
+  const [encData, setEncData] = useState();
 
   const handleTogglePassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -111,9 +113,46 @@ export default function PassSignUp({ setSection }) {
   };
   
 
-  const onSubmit = async (values) => {
+  const handlePass = async () => {
+    setLoader(true);
+    try {
+      await mainCallerWithOutToken("checkMain", "GET", null).then((res) => {
+        if (res.statusCode === 200) {
+          setEncData(res.data);
+          fnPopup(); 
+        } else {
+           setLoader(false);
+          // navigate("/error");
+        }
+      });
+    } catch (error) {
+      toast.error(error.response?.data.message);
+    }
+  };
 
- 
+  useEffect(() => {
+    if (encData) {
+      fnPopup();
+    }
+
+  }, [encData]);
+
+
+  function fnPopup() {
+      window.open(
+        "",
+        "popupChk",
+        "width=500, height=550, top=100, left=50, fullscreen=no, menubar=no, status=no, toolbar=no, titlebar=yes, location=no, scrollbar=no"
+      );
+      document.form_chk.action =
+        "https://nice.checkplus.co.kr/CheckPlusSafeModel/checkplus.cb";
+      document.form_chk.target = "popupChk";
+      document.form_chk.submit();
+
+    }
+
+
+  const onSubmit = async (values) => {
 
     if (isError) return;
     setErrorMsg("");
@@ -152,11 +191,18 @@ export default function PassSignUp({ setSection }) {
     }
   };
 
+
+
+
   return (
     <>
       <div className="login-page">
         <div className="page-body">
           <div className="container">
+             <form name="form_chk" method="post" style={{ display: "none" }}>
+              <input type="hidden" name="m" value="checkplusService" />
+              <input type="hidden" name="EncodeData" value={encData} />
+            </form>
             <div className="page-content-pass">
               {loader ? (
                 <Box
@@ -380,7 +426,7 @@ export default function PassSignUp({ setSection }) {
                               />
                             </div>
                           </div>
-                          <div className="field-box flex-center">
+                          <div className="field-box flex-center mobile-margin alignItemBase">
                             <p className="label label-mr">
                               휴대폰<span>*</span>
                             </p>
@@ -407,13 +453,19 @@ export default function PassSignUp({ setSection }) {
                                   onChange={handleChangeNumber}
                                   disabled={false}
                                 />
+
                                 {errors.phoneNumber && (
                                   <p className="error-message">
                                     {errors.phoneNumber.message}
                                   </p>
                                 )}
-                               
+                              
                               </div>
+                                <button
+                                  className="btn search"
+                                  onClick={handlePass} >
+                                  인증
+                                </button>
                             </div>
                           </div>
                           <div className="field-box flex-center alignItemBase">
