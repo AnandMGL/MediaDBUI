@@ -49,7 +49,7 @@ export default function SectionFiveUpdate({
     addressDetails: user.addressDetails,
   };
 
-  const { register, handleSubmit, reset, watch, setValue } = useForm({
+  const { register, handleSubmit, reset, watch, setValue, formState: { errors }, } = useForm({
     defaultValues: newUserData,
     resume,
   });
@@ -136,6 +136,7 @@ export default function SectionFiveUpdate({
   };
 
   const onSubmit = async (values) => {
+    
     const updatedValues = { ...values, status: "EDITING" };
 
     try {
@@ -331,8 +332,14 @@ export default function SectionFiveUpdate({
                 <input
                   className="field"
                   placeholder="내용을 입력해주세요"
-                  {...register("nameEnglish")}
+                  {...register("nameEnglish", {
+                    required: "영문 이름을 입력해 주세요",
+                  })}
                 />
+                {errors.nameEnglish && (
+                  <p className="error-message">영문 이름을 입력해 주세요</p>
+                )}
+
               </div>
               <div className="col-md-1 last-child">
                 <p className="label">이름(한자)</p>
@@ -341,8 +348,11 @@ export default function SectionFiveUpdate({
                 <input
                   className="field"
                   placeholder="내용을 입력해주세요"
-                  {...register("nameChinese")}
+                  {...register("nameChinese", { required: "한자 이름을 입력해 주세요" })}
                 />
+                {errors.nameChinese && (
+                  <p className="error-message">한자 이름을 입력해 주세요</p>
+                )}
               </div>
               <div className="col-12">
                 <hr />
@@ -768,7 +778,7 @@ export default function SectionFiveUpdate({
                 <h5 className="title">7. 경력 상세 사항</h5>
               </div>
               <div className="col-md-6 first">
-                <p className="label top">경력 기간</p>
+                <p className="label top">경력기간</p>
               </div>
               <div className="col-md-6 last">
                 <div className="row">
