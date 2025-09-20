@@ -171,7 +171,7 @@ export default function SectionOne() {
             <div className="row">
               <div className="col-md-12 col-lg-6 col-12">
                 <div className="field-box flex-center">
-                  <p className="label">이름(한글)</p>
+                  <p className="label">이름(한문)</p>
                   <input
                     className="field"
                     disabled
