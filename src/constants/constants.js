@@ -705,6 +705,6 @@ export const pageSize = [
 ];
 
 export const order = [
-  { label: "정순", value: "DESC" },
-  { label: "역순", value: "ASC" },
+  { label: "최신기준", value: "DESC" },
+  { label: "과거기준", value: "ASC" },
 ];

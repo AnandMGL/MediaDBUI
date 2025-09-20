@@ -87,6 +87,53 @@ export default function SectionFiveUpdate({
     });
   };
 
+  const ym = (y, m) => {
+    const yy = parseInt(String(y ?? ""), 10);
+    const mm = parseInt(String(m ?? ""), 10);
+    if (Number.isNaN(yy) || Number.isNaN(mm) || !yy || !mm) return 0;
+    return yy * 100 + mm;
+  };
+  const validateChronology = (list = [], label = "학력") => {
+  for (let i = 0; i < list.length; i++) {
+    const it = list[i] || {};
+    const from = ym(it.fromYear, it.fromMonth);
+    const to = ym(it.toYear, it.toMonth);
+
+    // мөрийн дотор
+    if (from && to && from > to) {
+      toast.error(`[${label}] №${i + 1}: 시작(From)이 종료(To)보다 늦습니다.`);
+      return false;
+    }
+
+    // дараалал: өмнөх мөрийн эхлэл нь дараагийнхаасаа шинэ байх ёстой
+    if (i < list.length - 1) {
+      const next = list[i + 1] || {};
+      const curStart = from;
+      const nextStart = ym(next.fromYear, next.fromMonth);
+      if (curStart && nextStart && curStart < nextStart) {
+        toast.error(
+          `[${label}] №${i + 1}의 시작이 №${i + 2}보다 최신이어야 합니다 (신→구 정렬).`
+        );
+        return false;
+      }
+    }
+  }
+  return true;
+};
+
+const validateAll = (values) => {
+  if (values?.eduHistories?.length) {
+    if (!validateChronology(values.eduHistories, "학력")) return false;
+  }
+  if (values?.interEduHistories?.length) {
+    if (!validateChronology(values.interEduHistories, "해외연수")) return false;
+  }
+  if (values?.careerDetails?.length) {
+    if (!validateChronology(values.careerDetails, "경력")) return false;
+  }
+  return true;
+};
+
   useEffect(() => {
     if (modal.occupation) {
       if (occuNumber === 1) {
@@ -107,6 +154,7 @@ export default function SectionFiveUpdate({
   }, [occuNumber, modal.occupation]);
 
   const submit = async (values) => {
+    if (!validateAll(values)) return;
     const updatedValues = { ...values, status: "WRITING" };
     try {
       if (resume.id) {
@@ -135,8 +183,22 @@ export default function SectionFiveUpdate({
     setResume("");
   };
 
+useEffect(() => {
+  const sub = watch((value, { name }) => {
+    if (
+      name &&
+      (name.startsWith("eduHistories") ||
+        name.startsWith("interEduHistories") ||
+        name.startsWith("careerDetails"))
+    ) {
+      validateAll(value);
+    }
+  });
+  return () => sub && sub.unsubscribe && sub.unsubscribe();
+}, [watch]);
+
   const onSubmit = async (values) => {
-    
+    if (!validateAll(values)) return;
     const updatedValues = { ...values, status: "EDITING" };
 
     try {
@@ -342,16 +404,16 @@ export default function SectionFiveUpdate({
 
               </div>
               <div className="col-md-1 last-child">
-                <p className="label">이름(한자)</p>
+                <p className="label">이름(항문)</p>
               </div>
               <div className="col-md-4 last-child">
                 <input
                   className="field"
                   placeholder="내용을 입력해주세요"
-                  {...register("nameChinese", { required: "한자 이름을 입력해 주세요" })}
+                  {...register("nameChinese", { required: "항문 이름을 입력해 주세요" })}
                 />
                 {errors.nameChinese && (
-                  <p className="error-message">한자 이름을 입력해 주세요</p>
+                  <p className="error-message">항문 이름을 입력해 주세요</p>
                 )}
               </div>
               <div className="col-12">

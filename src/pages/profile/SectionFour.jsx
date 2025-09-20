@@ -32,6 +32,7 @@ export default function SectionFour({ user }) {
   };
 
   const handleOrderChange = (e) => {
+    console.log(e.target.value);
     setQuery({ ...query, order: e.target.value });
   };
 
@@ -101,7 +102,7 @@ export default function SectionFour({ user }) {
               <td>근무지</td>
               <td>지급 총계</td>
               <td>공제 총계</td>
-              <td>차인지급</td>
+              <td>차인지급액</td>
               <td>지급일</td>
             </tr>
           </thead>
