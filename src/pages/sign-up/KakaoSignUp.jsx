@@ -76,7 +76,7 @@ export default function KakaoSignUp() {
 
     try {
       const response = await mainCallerWithOutToken(
-        `home/login-callback/${code}`,
+        `checkMain`,
         "GET",
         null
       );
