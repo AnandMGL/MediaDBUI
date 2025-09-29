@@ -573,7 +573,7 @@ export default function PassSignUp({ setSection }) {
                      
                         padding: '12px 20px'
                       }} 
-                    className="btn back" onClick={() => setSection(3)}>
+                    className="btn back" onClick={() => navigation("/login")}>
                       뒤로가기
                     </button>
                     <button
