@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import {
     mainCallerFileWithToken,
     mainCallerWithOutToken,
+    mainCallerFileWithTokenPost,
 } from "../../api/mainCaller";
 import BreadCrumb from "../../components/bread-crumb";
 import BookmarkButton from "../../components/buttons/bookmark-button";
@@ -73,6 +74,8 @@ export default function Job() {
 
     const getJobDetail = async () => {
         try {
+            console.log('id', id);
+            console.log('user.id', user.id);
             await mainCallerWithOutToken(
                 `recruitment/getById/${id}/${user.id ? user.id : 0}`,
                 "GET",
@@ -116,7 +119,7 @@ export default function Job() {
         formData.append("file", resumeId ? null : selectedFile);
 
         try {
-            await mainCallerFileWithToken(
+            await mainCallerFileWithTokenPost(
                 "jobApplications/userApply",
                 "POST",
                 formData
