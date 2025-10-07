@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { mainCallerFileWithToken } from "../../api/mainCaller";
+import UserModal from "../../components/modals/UserStatusModal";
 import {
   eduLevel,
   // formatKoreanPhoneNumber,
@@ -30,6 +31,7 @@ export default function SectionOne() {
   const [imageUrl, setImageUrl] = useState();
   const [koPhoneNumber, setKoPhoneNumber] = useState("");
   const [postalCode, setPostalCode] = useState("");
+  const [modal, setModal] = useState({ isOpen: false, userId: null });
 
   const formatKoreanPhoneNumber = (phoneNumber) => {
     if (!phoneNumber) return ""; // Return empty string if phone number is not provided
@@ -81,7 +83,7 @@ export default function SectionOne() {
       setValue("address", `${data.sido} ${data.sigungu} ${data.roadname} ${data.roadAddress.split(' ').slice(-1)[0]}`);
       // setValue("address", address[0].address.addressLine1);
       console.log('postalCode: ', data);
-      
+
       setPostalCode(data.zonecode);
     }
   };
@@ -117,7 +119,7 @@ export default function SectionOne() {
     });
     formData.append("phoneNumber", koPhoneNumber.replace(/-/g, ""));
     formData.append("file", image);
-    if(postalCode)
+    if (postalCode)
       formData.append("postalCode", postalCode);
     try {
       await mainCallerFileWithToken("applicants/update", "POST", formData).then(
@@ -142,6 +144,10 @@ export default function SectionOne() {
       toast.error(error.response?.data.message);
     }
   };
+
+   const userStatusShow = () => {
+        setModal({ isOpen: true, userId: user.id });
+    };
 
   return (
     <div className="page-content-one">
@@ -364,15 +370,20 @@ export default function SectionOne() {
           </div>
         </div>
         <hr />
-        <div className="buttom-buttons flex-between">
-          <button className="btn back" onClick={() => navigate("/")}>
-            취소
-          </button>
-          <button className="btn submit" type="submit">
-            저장
-          </button>
+        <div className="buttom-buttons" style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <a className="label" onClick={userStatusShow}  style={{ textDecoration: 'underline', fontSize: '13px', marginLeft: '260px', cursor: 'pointer'}}>  탈퇴하기 </a>
+
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <button className="btn back" onClick={() => navigate("/")}>
+              취소
+            </button>
+            <button className="btn submit" type="submit">
+              저장
+            </button>
+          </div>
         </div>
       </form>
+      {modal.isOpen && (<UserModal modal={modal} setModal={setModal} userId={modal.userId} modalKey="isOpen" title="Change status" />)}
     </div>
   );
 }

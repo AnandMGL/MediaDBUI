@@ -76,7 +76,12 @@ export default function SectionOne({ setSection }) {
             }
           })
           .catch((error) => {
-            toast.warning('아이디 또는 비밀번호가 잘못되었습니다.');
+            if (error.response?.status === 403) {
+              toast.warning('탈퇴한 회원입니다.');
+            }else{
+              toast.warning('아이디 또는 비밀번호가 잘못되었습니다.');
+            }
+           
           });
       } catch (error) {
         toast.error(error.response?.data.message);

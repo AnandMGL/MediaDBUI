@@ -7,6 +7,13 @@
   box-sizing: border-box;
 }
 
+
+.statusModal *:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+
 body {
   min-height: 100vh;
 

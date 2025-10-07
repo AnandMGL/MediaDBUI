@@ -148,7 +148,7 @@ export default function PassSignUp({ setSection }) {
         "https://nice.checkplus.co.kr/CheckPlusSafeModel/checkplus.cb";
       document.form_chk.target = "popupChk";
       document.form_chk.submit();
-
+      navigation("/pass-sign-up");
     }
 
 
