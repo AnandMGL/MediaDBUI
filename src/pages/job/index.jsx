@@ -81,7 +81,7 @@ export default function Job() {
                 "GET",
                 null
             ).then((res) => {
-              
+
                 if (res.statusCode === 200) {
                     setJobData(res.data);
                 }
@@ -117,7 +117,9 @@ export default function Job() {
             formData.append("resumeId", resumeId);
         }
         formData.append("file", resumeId ? null : selectedFile);
-
+        for (let [key, value] of formData.entries()) {
+            console.log(key, value);
+        }
         try {
             await mainCallerFileWithTokenPost(
                 "jobApplications/userApply",
@@ -125,7 +127,7 @@ export default function Job() {
                 formData
             ).then((res) => {
                 if (res.statusCode === 200) {
-                    toast.success(res.message);
+                    toast.success("저장되었습니다");
                     setSecondModal(false);
                     getJobDetail();
                 } else {
@@ -211,8 +213,8 @@ export default function Job() {
                                                 <h6>
                                                     {jobData?.eduHistoryFrom
                                                         ? jobData?.eduHistoryFrom +
-                                                          " - " +
-                                                          jobData?.eduHistoryTo
+                                                        " - " +
+                                                        jobData?.eduHistoryTo
                                                         : "무관"}
                                                 </h6>
                                             </div>
@@ -237,9 +239,9 @@ export default function Job() {
                                                                     jobData?.salaryConditions.split(
                                                                         "\n"
                                                                     ).length -
-                                                                        1 && (
-                                                                    <br />
-                                                                )}
+                                                                    1 && (
+                                                                        <br />
+                                                                    )}
                                                             </React.Fragment>
                                                         ))}
                                                 </h6>
@@ -311,13 +313,13 @@ export default function Job() {
                                             )}
 
                                             <div className="extra-buttons flex-between">
-                                            <button
-                                                className="btn download-btn"
-                                                onClick={handleDownloadClick}
-                                                disabled={!jobData?.attachmentPath || "logo/2024/logo/null" === jobData?.attachmentPath ? true : false} 
+                                                <button
+                                                    className="btn download-btn"
+                                                    onClick={handleDownloadClick}
+                                                    disabled={!jobData?.attachmentPath || "logo/2024/logo/null" === jobData?.attachmentPath ? true : false}
                                                 >
-                                                지원 양식 다운로드
-                                            </button>
+                                                    지원 양식 다운로드
+                                                </button>
 
 
 
@@ -376,7 +378,7 @@ export default function Job() {
                                                 <p>모집기간</p>
                                                 <h6>
                                                     {jobData?.always ? "상시"
-                                                    : `${formatDate(jobData?.periodFrom)} 부터 ${formatDate(jobData?.periodTo)} 까지`}
+                                                        : `${formatDate(jobData?.periodFrom)} 부터 ${formatDate(jobData?.periodTo)} 까지`}
                                                 </h6>
                                             </div>
                                             <div className="info">
@@ -416,8 +418,8 @@ export default function Job() {
                                                 <h6>
                                                     {jobData?.eduHistoryFrom
                                                         ? jobData?.eduHistoryFrom +
-                                                          " - " +
-                                                          jobData?.eduHistoryTo
+                                                        " - " +
+                                                        jobData?.eduHistoryTo
                                                         : "무관"}
                                                 </h6>
                                             </div>
