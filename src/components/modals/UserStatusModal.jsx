@@ -46,7 +46,7 @@ export default function UserStatusModal({
                     if (res.statusCode === 200) {
                         close();
                         dispatch(setUserData({}));
-                        navigation("/login")
+                        toast.success("회원 탈퇴가 완료되었습니다.");
                     } else {
                         toast.warning(res.message);
                     }

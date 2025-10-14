@@ -2,19 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./index.scss";
-import {
-  eduLevel,
-  scriptUrl,
-  validName,
-  valNumber,
-  validSelect,
-  emailValid,
-  validAddress,
-  validPassword,
-  formatDateUser,
-  formatPhoneNumber,
-  validPhoneNumber,
-} from "../../constants/constants";
+import { eduLevel, scriptUrl, validName, valNumber, validSelect, emailValid, validAddress, validPassword, formatDateUser, formatPhoneNumber, validPhoneNumber } from "../../constants/constants";
 import { createUser } from "../../api/user";
 import { useDispatch } from "react-redux";
 import { setUserData } from "../../actions/user";
@@ -44,6 +32,9 @@ export default function PassSignUp({ setSection }) {
   const [koPhoneNumber, setKoPhoneNumber] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [encData, setEncData] = useState();
+  const [isPhoneValid, setIsPhoneValid] = useState(false);
+  const [isPhoneLocked, setIsPhoneLocked] = useState(false);
+  const [isPhoneVerified, setIsPhoneVerified] = useState(false);
 
   const handleTogglePassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -108,20 +99,26 @@ export default function PassSignUp({ setSection }) {
   const handleChangeNumber = (e) => {
     const input = e.target.value.replace(/\D/g, "");
     const trimmed = input.slice(0, 11);
-  
+
     setKoPhoneNumber(formatPhoneNumber(trimmed));
+    if (trimmed.length === 11) {
+      setIsPhoneValid(true);
+    } else {
+      setIsPhoneValid(false);
+    }
   };
-  
 
   const handlePass = async () => {
     setLoader(true);
+    setIsPhoneLocked(true);
     try {
       await mainCallerWithOutToken("checkMain", "GET", null).then((res) => {
         if (res.statusCode === 200) {
           setEncData(res.data);
-          fnPopup(); 
+          setIsPhoneVerified(true);
+          fnPopup();
         } else {
-           setLoader(false);
+          setLoader(false);
           // navigate("/error");
         }
       });
@@ -134,30 +131,24 @@ export default function PassSignUp({ setSection }) {
     if (encData) {
       fnPopup();
     }
-
   }, [encData]);
 
-
   function fnPopup() {
-      window.open(
-        "",
-        "popupChk",
-        "width=500, height=550, top=100, left=50, fullscreen=no, menubar=no, status=no, toolbar=no, titlebar=yes, location=no, scrollbar=no"
-      );
-      document.form_chk.action =
-        "https://nice.checkplus.co.kr/CheckPlusSafeModel/checkplus.cb";
-      document.form_chk.target = "popupChk";
-      document.form_chk.submit();
-      navigation("/pass-sign-up");
-    }
-
+    window.open("", "popupChk", "width=500, height=550, top=100, left=50, fullscreen=no, menubar=no, status=no, toolbar=no, titlebar=yes, location=no, scrollbar=no");
+    document.form_chk.action = "https://nice.checkplus.co.kr/CheckPlusSafeModel/checkplus.cb";
+    document.form_chk.target = "popupChk";
+    document.form_chk.submit();
+    navigation("/pass-sign-up");
+  }
 
   const onSubmit = async (values) => {
-
+    if (!isPhoneVerified) {
+      toast.warning("휴대폰 인증을 완료해 주세요."); 
+      return;
+    }
     if (isError) return;
     setErrorMsg("");
 
- 
     setIsError(false);
     setIsSuccess(true);
 
@@ -191,15 +182,12 @@ export default function PassSignUp({ setSection }) {
     }
   };
 
-
-
-
   return (
     <>
       <div className="login-page">
         <div className="page-body">
           <div className="container">
-             <form name="form_chk" method="post" style={{ display: "none" }}>
+            <form name="form_chk" method="post" style={{ display: "none" }}>
               <input type="hidden" name="m" value="checkplusService" />
               <input type="hidden" name="EncodeData" value={encData} />
             </form>
@@ -214,11 +202,7 @@ export default function PassSignUp({ setSection }) {
                     height: 520,
                   }}
                 >
-                  <Typography
-                    sx={{ pb: "60px", color: "#3A3A3A", fontSize: "28px" }}
-                  >
-                    로딩중
-                  </Typography>
+                  <Typography sx={{ pb: "60px", color: "#3A3A3A", fontSize: "28px" }}>로딩중</Typography>
                   <CircularProgress color="success" />
                 </Box>
               ) : (
@@ -229,33 +213,19 @@ export default function PassSignUp({ setSection }) {
                   <div className="content-body flex-between">
                     <label htmlFor="imageupload">
                       <div className="image-box">
-                        {image ? (
-                          <img
-                            src={URL.createObjectURL(image)}
-                            alt="uploader"
-                          />
-                        ) : null}
+                        {image ? <img src={URL.createObjectURL(image)} alt="uploader" /> : null}
                         <div className="camera flex-center">
                           <img src="/assets/icons/camera.svg" alt="camera" />
                         </div>
                       </div>
                       {isError && <p className="error-message">{errorMsg}</p>}
                       {isSuccess && (
-                        <div
-                          className="success-text"
-                          style={{ color: "green" }}
-                        >
+                        <div className="success-text" style={{ color: "green" }}>
                           {/* Valid File Type */}
                         </div>
                       )}
 
-                      <input
-                        type="file"
-                        accept="image/*"
-                        id="imageupload"
-                        style={{ display: "none" }}
-                        onChange={handleUploadImage}
-                      />
+                      <input type="file" accept="image/*" id="imageupload" style={{ display: "none" }} onChange={handleUploadImage} />
                     </label>
 
                     <div className="form-fields">
@@ -266,12 +236,7 @@ export default function PassSignUp({ setSection }) {
                               이름(한글)<span>*</span>
                             </p>
                             <div className="w-100">
-                              <input
-                                disabled
-                                className="field"
-                                placeholder="내용을 입력하여 주세요"
-                                defaultValue={enCodeData?.name}
-                              />
+                              <input disabled className="field" placeholder="내용을 입력하여 주세요" defaultValue={enCodeData?.name} />
                             </div>
                           </div>
                           <div className="field-box flex-center alignItemBase">
@@ -283,14 +248,8 @@ export default function PassSignUp({ setSection }) {
                                 <p className="label mobile">
                                   성별<span>*</span>
                                 </p>
-                                <select
-                                  className="field first"
-                                  defaultValue={enCodeData?.gender}
-                                  disabled
-                                >
-                                  <option value={enCodeData?.gender}>
-                                    {enCodeData?.gender}
-                                  </option>
+                                <select className="field first" defaultValue={enCodeData?.gender} disabled>
+                                  <option value={enCodeData?.gender}>{enCodeData?.gender}</option>
                                 </select>
                               </div>
 
@@ -301,21 +260,14 @@ export default function PassSignUp({ setSection }) {
                                 <p className="label label-padding mobile">
                                   최종학력<span>*</span>
                                 </p>
-                                <select
-                                  className="field"
-                                  {...register("eduLevel", validSelect)}
-                                >
+                                <select className="field" {...register("eduLevel", validSelect)}>
                                   {eduLevel.map((level, index) => (
                                     <option value={level.value} key={index}>
                                       {level.label}
                                     </option>
                                   ))}
                                 </select>
-                                {errors.eduLevel && (
-                                  <p className="error-message">
-                                    {errors.eduLevel.message} 최종학력을 선택해 주세요
-                                  </p>
-                                )}
+                                {errors.eduLevel && <p className="error-message">{errors.eduLevel.message} 최종학력을 선택해 주세요</p>}
                               </div>
                             </div>
                           </div>
@@ -340,27 +292,16 @@ export default function PassSignUp({ setSection }) {
                                     setValue("address", value);
                                   }}
                                 />
-                                {errors.address && (
-                                  <p className="error-message">
-                                    {errors.address.message}
-                                  </p>
-                                )}
+                                {errors.address && <p className="error-message">{errors.address.message}</p>}
                               </div>
-                              <button
-                                className="btn search"
-                                onClick={handleClick}
-                              >
+                              <button className="btn search" onClick={handleClick}>
                                 검색
                               </button>
                             </div>
                           </div>
                           <div className="field-box flex-center">
                             <p className="label m-0" />
-                            <input
-                              className="field"
-                              placeholder="상세 주소를 입력해 주세요"
-                              {...register("addressDetails")}
-                            />
+                            <input className="field" placeholder="상세 주소를 입력해 주세요" {...register("addressDetails")} />
                           </div>
                           <div className="field-box flex-center alignItemBase">
                             <p className="label">
@@ -375,12 +316,7 @@ export default function PassSignUp({ setSection }) {
                                   alignItems: "center",
                                 }}
                               >
-                                <input
-                                  className="field"
-                                  type={showPassword ? "text" : "password"}
-                                  placeholder="10자 이상 비밀번호를 입력해 주세요"
-                                  {...register("password", validPassword)}
-                                />
+                                <input className="field" type={showPassword ? "text" : "password"} placeholder="10자 이상 비밀번호를 입력해 주세요" {...register("password", validPassword)} />
                                 <Box
                                   sx={{
                                     position: "absolute",
@@ -388,26 +324,10 @@ export default function PassSignUp({ setSection }) {
                                   }}
                                   onClick={handleTogglePassword}
                                 >
-                                  {showPassword ? (
-                                    <img
-                                      src="/assets/icons/eye.svg"
-                                      alt="eye"
-                                      width={20}
-                                    />
-                                  ) : (
-                                    <img
-                                      src="/assets/icons/eye-off.svg"
-                                      alt="eye-off"
-                                      width={20}
-                                    />
-                                  )}
+                                  {showPassword ? <img src="/assets/icons/eye.svg" alt="eye" width={20} /> : <img src="/assets/icons/eye-off.svg" alt="eye-off" width={20} />}
                                 </Box>
                               </Box>
-                              {errors.password && (
-                                <p className="error-message">
-                                  {errors.password.message}
-                                </p>
-                              )}
+                              {errors.password && <p className="error-message">{errors.password.message}</p>}
                             </div>
                           </div>
                         </div>
@@ -417,13 +337,7 @@ export default function PassSignUp({ setSection }) {
                               생년월일<span>*</span>
                             </p>
                             <div className="w-100">
-                              <input
-                                disabled
-                                className="field"
-                                placeholder="YYYY-MM-DD"
-                                type="text"
-                                defaultValue={encDate}
-                              />
+                              <input disabled className="field" placeholder="YYYY-MM-DD" type="text" defaultValue={encDate} />
                             </div>
                           </div>
                           <div className="field-box flex-center mobile-margin alignItemBase">
@@ -451,21 +365,14 @@ export default function PassSignUp({ setSection }) {
                                   {...register("phoneNumber", validPhoneNumber)}
                                   value={koPhoneNumber}
                                   onChange={handleChangeNumber}
-                                  disabled={false}
+                                  disabled={isPhoneLocked}
                                 />
 
-                                {errors.phoneNumber && (
-                                  <p className="error-message">
-                                    {errors.phoneNumber.message}
-                                  </p>
-                                )}
-                              
+                                {errors.phoneNumber && <p className="error-message">{errors.phoneNumber.message}</p>}
                               </div>
-                                <button
-                                  className="btn search"
-                                  onClick={handlePass} >
-                                  인증
-                                </button>
+                              <button className="btn search" onClick={handlePass} disabled={!isPhoneValid || isPhoneLocked}>
+                                인증
+                              </button>
                             </div>
                           </div>
                           <div className="field-box flex-center alignItemBase">
@@ -473,17 +380,8 @@ export default function PassSignUp({ setSection }) {
                               이메일<span>*</span>
                             </p>
                             <div className="w-100">
-                              <input
-                                type="email"
-                                className="field"
-                                placeholder="이메일을 입력해 주세요"
-                                {...register("email", emailValid)}
-                              />
-                              {errors.email && (
-                                <p className="error-message">
-                                  {errors.email.message}
-                                </p>
-                              )}
+                              <input type="email" className="field" placeholder="이메일을 입력해 주세요" {...register("email", emailValid)} />
+                              {errors.email && <p className="error-message">{errors.email.message}</p>}
                             </div>
                           </div>
                           <div className="field-box flex-center alignItemBase">
@@ -491,16 +389,8 @@ export default function PassSignUp({ setSection }) {
                               아이디<span>*</span>
                             </p>
                             <div className="w-100">
-                              <input
-                                className="field"
-                                placeholder="아이디를 입력해주세요"
-                                {...register("username", validName)}
-                              />
-                              {errors.username && (
-                                <p className="error-message">
-                                  {errors.username.message}
-                                </p>
-                              )}
+                              <input className="field" placeholder="아이디를 입력해주세요" {...register("username", validName)} />
+                              {errors.username && <p className="error-message">{errors.username.message}</p>}
                             </div>
                           </div>
                           <div className="field-box flex-center alignItemBase">
@@ -522,9 +412,7 @@ export default function PassSignUp({ setSection }) {
                                   type={hidePassword ? "text" : "password"}
                                   {...register("verifyPassword", {
                                     required: true,
-                                    validate: (value) =>
-                                      value === password ||
-                                      "비밀번호가 일치하지 않습니다",
+                                    validate: (value) => value === password || "비밀번호가 일치하지 않습니다",
                                   })}
                                 />
                                 <Box
@@ -534,27 +422,11 @@ export default function PassSignUp({ setSection }) {
                                   }}
                                   onClick={handleTogglePasswordShow}
                                 >
-                                  {hidePassword ? (
-                                    <img
-                                      src="/assets/icons/eye.svg"
-                                      alt="eye"
-                                      width={20}
-                                    />
-                                  ) : (
-                                    <img
-                                      src="/assets/icons/eye-off.svg"
-                                      alt="eye-off"
-                                      width={20}
-                                    />
-                                  )}
+                                  {hidePassword ? <img src="/assets/icons/eye.svg" alt="eye" width={20} /> : <img src="/assets/icons/eye-off.svg" alt="eye-off" width={20} />}
                                 </Box>
                               </Box>
 
-                              {errors.verifyPassword && (
-                                <p className="error-message">
-                                  {errors.verifyPassword.message}
-                                </p>
-                              )}
+                              {errors.verifyPassword && <p className="error-message">{errors.verifyPassword.message}</p>}
                             </div>
                           </div>
                         </div>
@@ -565,25 +437,27 @@ export default function PassSignUp({ setSection }) {
                   <hr />
                   <div className="buttom-buttons flex-between">
                     <button
-                     style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        textAlign: 'center',
-                     
-                        padding: '12px 20px'
-                      }} 
-                    className="btn back" onClick={() => navigation("/login")}>
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        textAlign: "center",
+
+                        padding: "12px 20px",
+                      }}
+                      className="btn back"
+                      onClick={() => navigation("/login")}
+                    >
                       뒤로가기
                     </button>
                     <button
-                     style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        textAlign: 'center',
-                         
-                        padding: '12px 20px'
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        textAlign: "center",
+
+                        padding: "12px 20px",
                       }}
                       className="btn submit"
                       onClick={handleSubmit(onSubmit)}
