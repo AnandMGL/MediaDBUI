@@ -26,7 +26,9 @@ export default function ReferDetail() {
   // };
 
   const handleDownloadClick = (fileName) => {
-    console.log('file -name- ----->' , fileName);
+    if (!fileName || fileName.trim() === "") {
+      return; 
+    }
     const fileURL = imgURL + referData?.attachment;
 
     const link = document.createElement("a");
@@ -35,8 +37,7 @@ export default function ReferDetail() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-};
-
+  };
 
   useEffect(() => {
     getReferDetail();
@@ -46,13 +47,11 @@ export default function ReferDetail() {
 
   const getReferDetail = async () => {
     try {
-      await mainCallerToken(`notification/getById/${id}`, "GET", null).then(
-        (res) => {
-          if (res.statusCode === 200) {
-            setReferData(res.data);
-          }
+      await mainCallerToken(`notification/getById/${id}`, "GET", null).then((res) => {
+        if (res.statusCode === 200) {
+          setReferData(res.data);
         }
-      );
+      });
     } catch (error) {
       toast.error(error.response?.data.message);
     }
@@ -62,22 +61,15 @@ export default function ReferDetail() {
     <div className="reference-announce-detail">
       <div className="container">
         <BreadCrumb crumbName={"공지사항"} />
-        <h5 className="title">
-          {pathname === `/reference/${id}` ? "자료실" : "공지사항"}
-        </h5>
+        <h5 className="title">{pathname === `/reference/${id}` ? "자료실" : "공지사항"}</h5>
       </div>
       <div className="page-body">
         <div className="container">
           <div className="page-content">
             <div className="content-top flex-between">
-              <BackButton
-                label={pathname === `/reference/${id}` ? "자료실" : "공지사항"}
-              />
+              <BackButton label={pathname === `/reference/${id}` ? "자료실" : "공지사항"} />
               <Link to={pathname} className="btn link-button">
-                <img
-                  src="/assets/icons/align-justify.svg"
-                  alt="align-justify"
-                />
+                <img src="/assets/icons/align-justify.svg" alt="align-justify" />
                 목록보기
               </Link>
             </div>
@@ -114,10 +106,7 @@ export default function ReferDetail() {
             <div className="mobile">
               <ReferenceCard content={referData} i={""} />
             </div>
-            <div className="big-box">
-              {referData.notificationDetail &&
-                parse(referData.notificationDetail)}
-            </div>
+            <div className="big-box">{referData.notificationDetail && parse(referData.notificationDetail)}</div>
           </div>
         </div>
       </div>
