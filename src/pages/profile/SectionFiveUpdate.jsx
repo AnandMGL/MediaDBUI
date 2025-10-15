@@ -404,16 +404,16 @@ useEffect(() => {
 
               </div>
               <div className="col-md-1 last-child">
-                <p className="label">이름(항문)</p>
+                <p className="label">이름(한문)</p>
               </div>
               <div className="col-md-4 last-child">
                 <input
                   className="field"
                   placeholder="내용을 입력해주세요"
-                  {...register("nameChinese", { required: "항문 이름을 입력해 주세요" })}
+                  {...register("nameChinese", { required: "한문 이름을 입력해 주세요" })}
                 />
                 {errors.nameChinese && (
-                  <p className="error-message">항문 이름을 입력해 주세요</p>
+                  <p className="error-message">한문 이름을 입력해 주세요</p>
                 )}
               </div>
               <div className="col-12">
