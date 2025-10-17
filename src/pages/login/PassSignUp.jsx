@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./index.scss";
-import { eduLevel, scriptUrl, validName, valNumber, validSelect, emailValid, validAddress, validPassword, formatDateUser, formatPhoneNumber, validPhoneNumber } from "../../constants/constants";
+import { eduLevel, scriptUrl, validName, valNumber, validSelect, emailValid, validAddress, validPassword, formatDateUser, formatPhoneNumber, validPhoneNumber, gender } from "../../constants/constants";
 import { createUser } from "../../api/user";
 import { useDispatch } from "react-redux";
 import { setUserData } from "../../actions/user";
@@ -236,7 +236,7 @@ export default function PassSignUp({ setSection }) {
                               이름(한글)<span>*</span>
                             </p>
                             <div className="w-100">
-                              <input disabled className="field" placeholder="내용을 입력하여 주세요" defaultValue={enCodeData?.name} />
+                              <input className="field" placeholder="내용을 입력하여 주세요" defaultValue={enCodeData?.name} />
                             </div>
                           </div>
                           <div className="field-box flex-center alignItemBase">
@@ -248,8 +248,13 @@ export default function PassSignUp({ setSection }) {
                                 <p className="label mobile">
                                   성별<span>*</span>
                                 </p>
-                                <select className="field first" defaultValue={enCodeData?.gender} disabled>
-                                  <option value={enCodeData?.gender}>{enCodeData?.gender}</option>
+                                <select className="field first" defaultValue={enCodeData?.gender} >
+                                  {enCodeData?.gender && (
+                                    <option value={enCodeData.gender}>{enCodeData.gender}</option>
+                                  )}
+                                  <option value="선택">선택</option>
+                                  <option value="남자">남자</option>
+                                  <option value="여자">여자</option>
                                 </select>
                               </div>
 
@@ -337,7 +342,7 @@ export default function PassSignUp({ setSection }) {
                               생년월일<span>*</span>
                             </p>
                             <div className="w-100">
-                              <input disabled className="field" placeholder="YYYY-MM-DD" type="text" defaultValue={encDate} />
+                              <input  className="field" placeholder="YYYY-MM-DD" type="text" defaultValue={encDate} />
                             </div>
                           </div>
                           <div className="field-box flex-center mobile-margin alignItemBase">
