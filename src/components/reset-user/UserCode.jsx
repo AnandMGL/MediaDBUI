@@ -77,7 +77,7 @@ export default function UserCode({
           toast.success(res.body.message);
           setIsUploading(false);
           setUserName(res.body?.data);
-          if(buttonText == '북구된 ID 보기'){
+          if(buttonText == '복구된 ID보기'){
               UserNameResetShow();
           }else{
               UserResetPasswordShow();

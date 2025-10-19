@@ -162,7 +162,7 @@ export default function SectionOne({ setSection }) {
             setUserName={setUserName}
             UserNameResetShow={UserNameResetShow}
             UserResetPasswordShow={UserCodeModalShow}
-            buttonText={modalTitle === 1 ? "북구된 ID 보기" : "비밀번호 재설정"}
+            buttonText={modalTitle === 1 ? "복구된 ID보기" : "비밀번호 재설정"}
             // buttonText2={modalTitle === 1 ? "아이디 찾기" : "비밀번호 재설정"}
           />
         </CustomModal>
